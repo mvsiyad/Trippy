@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Global Traveler's Compass | Ultimate Guide to India & World Destinations</title>
+  <meta name="description" content="Discover the world's and India's most breathtaking travel destinations. Complete traveler guides featuring detailed locations, best time to visit, and realistic budget calculators for every travel style.">
+  <meta name="keywords" content="India travel guide, world beautiful places, Spiti valley, Kashmir, Switzerland, Kyoto, Iceland, travel budget calculator, best time to visit">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Global Traveler's Compass | India & Worldwide Destination Guides">
+  <meta property="og:description" content="Explore location details, optimal seasons, and realistic trip budget breakdowns for iconic destinations in India and across the globe.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/hero.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="container announcement-content">
+      <span class="badge-pulse"><i class="fa-solid fa-compass"></i> CURATED ROUTES</span>
+      <span>Handpicked guides across India and world wonders &bull; Route intel, prime seasons & realistic budgets</span>
+      <a href="#destinations" class="announcement-link">Explore Destinations <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo" id="brandLogo">
+        <div class="logo-icon"><i class="fa-solid fa-earth-americas"></i></div>
+        <div class="logo-text">
+          <span class="brand-name">WANDERLUST</span>
+          <span class="brand-tag">THE TRAVELER'S COMPASS</span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav" id="desktopNav">
+        <a href="#destinations" class="nav-link active">Destinations</a>
+        <a href="#season-radar" class="nav-link">When to Go</a>
+        <a href="#budget-calculator" class="nav-link">Budget Estimator</a>
+        <a href="#travel-hacks" class="nav-link">Traveler Hacks</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline btn-sm" id="openBucketListBtn">
+          <i class="fa-solid fa-heart text-danger"></i>
+          <span>My Bucket List</span>
+          <span class="bucket-counter" id="bucketCount">0</span>
+        </button>
+        <a href="#budget-calculator" class="btn btn-primary btn-sm pulse-glow">
+          <i class="fa-solid fa-calculator"></i>
+          <span>Trip Cost Estimator</span>
+        </a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-header">
+        <span class="brand-name">WANDERLUST</span>
+        <button class="drawer-close" id="drawerClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mobile-drawer-links">
+        <a href="#destinations" class="mobile-nav-link"><i class="fa-solid fa-map-location-dot"></i> Explore Destinations</a>
+        <a href="#season-radar" class="mobile-nav-link"><i class="fa-solid fa-calendar-check"></i> Best Time to Visit</a>
+        <a href="#budget-calculator" class="mobile-nav-link"><i class="fa-solid fa-wallet"></i> Trip Budget Estimator</a>
+        <a href="#travel-hacks" class="mobile-nav-link"><i class="fa-solid fa-lightbulb"></i> Smart Travel Hacks</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero-section" id="heroSection">
+      <div class="hero-backdrop">
+        <img src="assets/images/hero.jpg" alt="Spectacular Himalayan Travel Landscape" class="hero-bg-img" id="heroBgImage">
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="container hero-content-wrapper text-center hero-portal-layout">
+        
+        <div class="hero-meta-badges justify-center">
+          <span class="meta-pill pill-neutral">
+            <i class="fa-solid fa-globe"></i> India & Worldwide Guide
+          </span>
+          <span class="meta-pill pill-rating">
+            <i class="fa-solid fa-shield-halved"></i> Verified Field Insights
+          </span>
+          <span class="meta-pill pill-alert">
+            <i class="fa-solid fa-coins"></i> 2026 Budget Estimates
+          </span>
+        </div>
+
+        <h1 class="hero-headline">
+          Where Will Your Wanderlust Take You? <br>
+          <span class="text-gradient">Explore India & The World</span>
+        </h1>
+
+        <p class="hero-subheadline max-w-750">
+          From the trans-Himalayan valleys of <strong>Himachal & Spiti</strong> to the tranquil houseboats of <strong>Kashmir</strong>, the alpine passes of <strong>Switzerland</strong>, and the ancient temples of <strong>Kyoto</strong>. Curated guides with real budgets, optimal seasons, and transit advice.
+        </p>
+
+        <!-- Search & Filter Bar -->
+        <div class="hero-search-container glass-panel">
+          <div class="search-input-wrap">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="destinationSearch" placeholder="Search by destination, country, vibe (e.g. Spiti, Switzerland, Snow, Budget, Lake)...">
+            <button class="clear-search-btn" id="clearSearchBtn" title="Clear search"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div class="quick-filter-dropdowns">
+            <div class="filter-dropdown-group">
+              <label for="filterRegion"><i class="fa-solid fa-location-dot text-accent"></i> Region</label>
+              <select id="filterRegion">
+                <option value="all">All Regions</option>
+                <option value="india">Incredible India</option>
+                <option value="international">International Wonders</option>
+              </select>
+            </div>
+
+            <div class="filter-dropdown-group">
+              <label for="filterBudget"><i class="fa-solid fa-wallet text-accent"></i> Budget Tier</label>
+              <select id="filterBudget">
+                <option value="all">Any Budget</option>
+                <option value="budget">Budget Backpacker (&lt; ₹2,500/day)</option>
+                <option value="mid">Mid-Range Comfort (₹2,500 - ₹8,000/day)</option>
+                <option value="luxury">Luxury / Global Escape (&gt; ₹8,000/day)</option>
+              </select>
+            </div>
+
+            <div class="filter-dropdown-group">
+              <label for="filterVibe"><i class="fa-solid fa-mountain text-accent"></i> Landscape Vibe</label>
+              <select id="filterVibe">
+                <option value="all">All Landscapes</option>
+                <option value="mountains">High Mountains & Passes</option>
+                <option value="lakes">Lakes & Waterways</option>
+                <option value="culture">Ancient Culture & Towns</option>
+                <option value="aurora">Winter & Aurora</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="portal-quick-stats">
+          <div class="p-stat">
+            <strong>8+</strong>
+            <span>Curated Destinations</span>
+          </div>
+          <div class="p-stat-sep"></div>
+          <div class="p-stat">
+            <strong>₹1,200 - ₹35,000</strong>
+            <span>Budget Spectrum (Per Day)</span>
+          </div>
+          <div class="p-stat-sep"></div>
+          <div class="p-stat">
+            <strong>365 Days</strong>
+            <span>Seasonal Route Intel</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Destinations -->
+    <section class="section-spacing destinations-section" id="destinations">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-compass"></i> FEATURED DESTINATIONS</div>
+          <h2 class="section-title">Explore Iconic Travel Havens</h2>
+          <p class="section-subtitle">
+            Select any destination to view in-depth location facts, seasonal windows, and transparent cost breakdowns for backpackers and luxury travelers alike.
+          </p>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="destination-tabs-row" id="categoryTabs">
+          <button class="dest-tab active" data-category="all">
+            <i class="fa-solid fa-globe"></i> All Destinations
+          </button>
+          <button class="dest-tab" data-category="india">
+            <i class="fa-solid fa-map-pin"></i> Incredible India
+          </button>
+          <button class="dest-tab" data-category="international">
+            <i class="fa-solid fa-plane"></i> International Wonders
+          </button>
+          <button class="dest-tab" data-category="mountains">
+            <i class="fa-solid fa-mountain"></i> Mountain Passes
+          </button>
+          <button class="dest-tab" data-category="lakes">
+            <i class="fa-solid fa-water"></i> Lakes & Waters
+          </button>
+          <button class="dest-tab" data-category="culture">
+            <i class="fa-solid fa-monument"></i> Cultural Havens
+          </button>
+        </div>
+
+        <!-- Results Counter & Sort -->
+        <div class="destinations-meta-bar">
+          <span id="resultsCount">Showing <strong>8</strong> destination guides</span>
+          <div class="sort-by-wrap">
+            <label for="sortDestinations">Sort by:</label>
+            <select id="sortDestinations">
+              <option value="popular">Most Popular</option>
+              <option value="budget-low">Budget: Low to High</option>
+              <option value="budget-high">Budget: High to Low</option>
+              <option value="name">Alphabetical</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="destinations-grid" id="destinationsGrid">
+          <!-- Populated via app.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Season Radar -->
+    <section class="section-spacing season-radar-section" id="season-radar">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-calendar-check"></i> SEASONAL TIMING</div>
+          <h2 class="section-title">Best Time to Visit: Month-by-Month</h2>
+          <p class="section-subtitle">
+            Every destination has a golden window. Pick your travel month below to see which destinations are at their peak weather.
+          </p>
+        </div>
+
+        <!-- Month Switcher Grid -->
+        <div class="month-selector-bar" id="monthSelectorBar">
+          <button class="month-btn" data-month="1">Jan</button>
+          <button class="month-btn" data-month="2">Feb</button>
+          <button class="month-btn" data-month="3">Mar</button>
+          <button class="month-btn" data-month="4">Apr</button>
+          <button class="month-btn" data-month="5">May</button>
+          <button class="month-btn active" data-month="6">Jun</button>
+          <button class="month-btn" data-month="7">Jul</button>
+          <button class="month-btn" data-month="8">Aug</button>
+          <button class="month-btn" data-month="9">Sep</button>
+          <button class="month-btn" data-month="10">Oct</button>
+          <button class="month-btn" data-month="11">Nov</button>
+          <button class="month-btn" data-month="12">Dec</button>
+        </div>
+
+        <!-- Month Spotlight Box -->
+        <div class="month-spotlight-card glass-panel" id="monthSpotlightCard">
+          <div class="spotlight-header">
+            <div>
+              <span class="spotlight-badge" id="spotlightSeasonTag">SUMMER HIGH-PASS & WILDFLOWER SEASON</span>
+              <h3 class="spotlight-title" id="spotlightMonthTitle">Where to Travel in June</h3>
+              <p class="spotlight-summary" id="spotlightSummary">
+                High Himalayan passes begin to open with dramatic snow walls, European alpine meadows turn emerald green, and northern regions enjoy midnight sun!
+              </p>
+            </div>
+          </div>
+
+          <div class="spotlight-places-grid" id="spotlightPlacesGrid">
+            <!-- Dynamic Month Recommendations -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Budget Calculator -->
+    <section class="section-spacing budget-calc-section" id="budget-calculator">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-calculator"></i> TRIP EXPENSES</div>
+          <h2 class="section-title">Interactive Travel Cost Estimator</h2>
+          <p class="section-subtitle">
+            Choose your target destination, how many days you want to explore, and your travel comfort level to get an instant breakdown of transport, stays, food, and activities.
+          </p>
+        </div>
+
+        <div class="calculator-grid">
+          
+          <div class="calc-controls-card glass-panel">
+            <h3 class="calc-panel-title"><i class="fa-solid fa-sliders text-accent"></i> Configure Your Journey</h3>
+
+            <div class="calc-form-group">
+              <label for="calcDestinationSelect"><i class="fa-solid fa-map-pin text-accent"></i> Select Destination</label>
+              <select id="calcDestinationSelect">
+                <!-- Options populated dynamically -->
+              </select>
+            </div>
+
+            <div class="calc-form-group">
+              <label><i class="fa-solid fa-clock text-accent"></i> Trip Duration (Days): <strong class="text-accent" id="calcDaysVal">7 Days</strong></label>
+              <input type="range" id="calcDaysRange" min="3" max="21" value="7" class="slider-range">
+              <div class="range-labels">
+                <span>3 Days</span>
+                <span>7 Days</span>
+                <span>14 Days</span>
+                <span>21 Days</span>
+              </div>
+            </div>
+
+            <div class="calc-form-group">
+              <label><i class="fa-solid fa-users text-accent"></i> Number of Travelers</label>
+              <div class="stepper-input">
+                <button type="button" class="step-btn" id="calcTravDec">-</button>
+                <input type="number" id="calcTravCount" min="1" max="10" value="2" readonly>
+                <button type="button" class="step-btn" id="calcTravInc">+</button>
+              </div>
+            </div>
+
+            <div class="calc-form-group">
+              <label><i class="fa-solid fa-bed text-accent"></i> Travel Comfort Tier</label>
+              <div class="tier-radio-group">
+                <label class="tier-radio-option">
+                  <input type="radio" name="calcTier" value="backpacker">
+                  <div class="radio-box">
+                    <strong>Backpacker / Budget</strong>
+                    <span>Hostels, homestays, public transit, local food</span>
+                  </div>
+                </label>
+                <label class="tier-radio-option">
+                  <input type="radio" name="calcTier" value="comfort" checked>
+                  <div class="radio-box">
+                    <strong>Mid-Range Explorer</strong>
+                    <span>Guest houses, shared or rental cab, cafe dining</span>
+                  </div>
+                </label>
+                <label class="tier-radio-option">
+                  <input type="radio" name="calcTier" value="luxury">
+                  <div class="radio-box">
+                    <strong>Premium / Luxury</strong>
+                    <span>Boutique resorts, private chauffeurs, curated tours</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-results-card glass-panel">
+            <div class="results-header">
+              <span class="est-tag"><i class="fa-solid fa-coins"></i> ESTIMATED TOTAL BUDGET</span>
+              <div class="big-price-display">
+                <span class="curr-symbol">₹</span>
+                <span class="total-number" id="calcTotalInr">38,500</span>
+                <span class="usd-alt" id="calcTotalUsd">(~$460 USD)</span>
+              </div>
+              <p class="per-traveler-line" id="calcPerPersonLine">Approx. <strong>₹19,250</strong> per traveler for 7 days</p>
+            </div>
+
+            <div class="expense-breakdown-list">
+              <div class="expense-row">
+                <div class="exp-icon"><i class="fa-solid fa-bed"></i></div>
+                <div class="exp-details">
+                  <strong>Stays & Lodging</strong>
+                  <span id="expStayDesc">Cozy mountain homestay / boutique hotel</span>
+                </div>
+                <strong class="exp-cost" id="expStayCost">₹14,000</strong>
+              </div>
+
+              <div class="expense-row">
+                <div class="exp-icon"><i class="fa-solid fa-car"></i></div>
+                <div class="exp-details">
+                  <strong>Transit & Getting Around</strong>
+                  <span id="expTransitDesc">Shared SUV / rental bike / local buses</span>
+                </div>
+                <strong class="exp-cost" id="expTransitCost">₹12,500</strong>
+              </div>
+
+              <div class="expense-row">
+                <div class="exp-icon"><i class="fa-solid fa-utensils"></i></div>
+                <div class="exp-details">
+                  <strong>Food, Cafes & Drinks</strong>
+                  <span id="expFoodDesc">3 hearty meals + scenic tea/coffee breaks</span>
+                </div>
+                <strong class="exp-cost" id="expFoodCost">₹8,000</strong>
+              </div>
+
+              <div class="expense-row">
+                <div class="exp-icon"><i class="fa-solid fa-ticket"></i></div>
+                <div class="exp-details">
+                  <strong>Activities, Permits & Entry</strong>
+                  <span id="expActivityDesc">Monastery fees, boating, viewpoint passes</span>
+                </div>
+                <strong class="exp-cost" id="expActivityCost">₹4,000</strong>
+              </div>
+            </div>
+
+            <div class="budget-save-tip">
+              <i class="fa-solid fa-lightbulb text-accent"></i>
+              <span id="calcProTip"><strong>Pro-Tip for Spiti:</strong> Traveling in a group of 3–4 splits vehicle and cab costs dramatically, saving up to 40% per person!</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Travel Hacks -->
+    <section class="section-spacing travel-hacks-section" id="travel-hacks">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-lightbulb"></i> INSIDER WISDOM</div>
+          <h2 class="section-title">Essential Smart Traveler Hacks</h2>
+          <p class="section-subtitle">
+            Whether you are heading into high-altitude Indian mountain deserts or boarding international flights, these tried-and-tested principles will save you money and headaches.
+          </p>
+        </div>
+
+        <div class="hacks-grid">
+          
+          <div class="hack-card glass-panel">
+            <div class="hack-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <h3 class="hack-title">High Altitude Acclimatization</h3>
+            <p class="hack-desc">
+              When visiting places above 10,000 ft (Spiti, Ladakh, Swiss summits), avoid flying directly to highest altitudes without 48 hrs gradual ascent. Drink 4L water daily, avoid alcohol for first 2 days, and carry Diamox.
+            </p>
+            <span class="hack-tag">Applies to: Spiti, Ladakh, Alps</span>
+          </div>
+
+          <div class="hack-card glass-panel">
+            <div class="hack-icon"><i class="fa-solid fa-credit-card"></i></div>
+            <h3 class="hack-title">Zero Forex Markup Cards</h3>
+            <p class="hack-desc">
+              Never exchange money at airport counters (you lose 8–12% in margins). Use Indian zero-forex debit/credit cards (Niyo, Fi, Scapia) that give exact interbank exchange rates with zero transaction fees worldwide.
+            </p>
+            <span class="hack-tag">Applies to: International Travels</span>
+          </div>
+
+          <div class="hack-card glass-panel">
+            <div class="hack-icon"><i class="fa-solid fa-bus-simple"></i></div>
+            <h3 class="hack-title">HRTC Mountain Bus Hack</h3>
+            <p class="hack-desc">
+              In Himachal, the state transport (HRTC) runs the legendary daily bus from Shimla to Kaza and Kaza to Manali for under ₹600. It covers the exact same awe-inspiring scenery that private taxis charge ₹25,000+ for!
+            </p>
+            <span class="hack-tag">Applies to: Himachal & Spiti</span>
+          </div>
+
+          <div class="hack-card glass-panel">
+            <div class="hack-icon"><i class="fa-solid fa-sim-card"></i></div>
+            <h3 class="hack-title">Connectivity in Remote Areas</h3>
+            <p class="hack-desc">
+              In Spiti, Jio and Airtel work decently in major towns like Kaza and Kalpa, but BSNL is the only carrier with lifelines in ultra-remote border zones. Download offline Google Maps and maps.me before departing base camp.
+            </p>
+            <span class="hack-tag">Applies to: Himalayas & Islands</span>
+          </div>
+
+          <div class="hack-card glass-panel">
+            <div class="hack-icon"><i class="fa-solid fa-passport"></i></div>
+            <h3 class="hack-title">Shoulder Season Magic</h3>
+            <p class="hack-desc">
+              Traveling during shoulder seasons (e.g. September for Spiti, late October for Kyoto, May for Switzerland) offers 50% cheaper stays, zero tourist crowds, and crystal clear photography lighting.
+            </p>
+            <span class="hack-tag">Applies to: Global & India</span>
+          </div>
+
+          <div class="hack-card glass-panel">
+            <div class="hack-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <h3 class="hack-title">Responsible Mountain Tourism</h3>
+            <p class="hack-desc">
+              Carry a reusable insulated bottle instead of buying single-use plastic water bottles. Support family-run indigenous homestays so your travel money directly benefits rural local communities.
+            </p>
+            <span class="hack-tag">Universal Principle</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      
+      <div class="footer-col brand-col">
+        <div class="brand-logo">
+          <div class="logo-icon"><i class="fa-solid fa-earth-americas"></i></div>
+          <div class="logo-text">
+            <span class="brand-name">WANDERLUST</span>
+            <span class="brand-tag">THE TRAVELER'S COMPASS</span>
+          </div>
+        </div>
+        <p class="footer-tagline">
+          An independent guide to exploring the most scenic landscapes across India and planet Earth. Built for explorers, budget backpackers, and roadtrippers.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="f-col-title">India Destinations</h4>
+        <ul class="f-links">
+          <li><a href="#destinations" data-filter="spiti">Spiti Valley, Himachal</a></li>
+          <li><a href="#destinations" data-filter="kashmir">Kashmir Valley</a></li>
+          <li><a href="#destinations" data-filter="chandratal">Chandratal Lake</a></li>
+          <li><a href="#destinations" data-filter="key-monastery">Key Monastery</a></li>
+          <li><a href="#destinations" data-filter="langza">Langza Village</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="f-col-title">World Destinations</h4>
+        <ul class="f-links">
+          <li><a href="#destinations" data-filter="swiss-alps">Swiss Alps, Switzerland</a></li>
+          <li><a href="#destinations" data-filter="kyoto">Kyoto, Japan</a></li>
+          <li><a href="#destinations" data-filter="iceland">Kirkjufell & Aurora, Iceland</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="f-col-title">Travel Tools</h4>
+        <ul class="f-links">
+          <li><a href="#budget-calculator">Trip Cost Estimator</a></li>
+          <li><a href="#season-radar">Best Time to Visit Radar</a></li>
+          <li><a href="#travel-hacks">Smart Traveler Hacks</a></li>
+          <li><a href="#destinations">All Destinations</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Wanderlust. Curated travel guides and budget planner.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Destination Modal -->
+  <div class="modal-backdrop" id="destinationModal">
+    <div class="modal-dialog glass-panel modal-lg">
+      <button class="modal-close-btn" id="closeDestModal"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="modal-banner-wrap" id="modalBannerWrap">
+        <img src="" alt="" id="modalDestImg" class="modal-banner-img">
+        <div class="modal-banner-overlay"></div>
+        <div class="modal-banner-content">
+          <span class="modal-country-badge" id="modalCountryBadge"></span>
+          <h2 class="modal-dest-title" id="modalDestTitle"></h2>
+          <span class="modal-tagline" id="modalDestTagline"></span>
+        </div>
+      </div>
+
+      <div class="modal-body-scroll">
+        
+        <!-- Meta Strip -->
+        <div class="modal-quick-meta-bar">
+          <div class="mq-item">
+            <span class="mq-label"><i class="fa-solid fa-calendar-days text-accent"></i> Best Season</span>
+            <strong id="modalBestSeason"></strong>
+          </div>
+          <div class="mq-item">
+            <span class="mq-label"><i class="fa-solid fa-wallet text-accent"></i> Daily Budget</span>
+            <strong id="modalDailyBudget"></strong>
+          </div>
+          <div class="mq-item">
+            <span class="mq-label"><i class="fa-solid fa-clock text-accent"></i> Ideal Duration</span>
+            <strong id="modalIdealDuration"></strong>
+          </div>
+          <div class="mq-item">
+            <span class="mq-label"><i class="fa-solid fa-plane text-accent"></i> Nearest Airport</span>
+            <strong id="modalNearestAirport"></strong>
+          </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="modal-section-block">
+          <h3 class="ms-title"><i class="fa-solid fa-book-open text-accent"></i> Overview</h3>
+          <p id="modalOverview" class="ms-paragraph"></p>
+        </div>
+
+        <!-- Budget Breakdown -->
+        <div class="modal-section-block">
+          <h3 class="ms-title"><i class="fa-solid fa-coins text-accent"></i> Estimated Daily Budget</h3>
+          <div class="modal-budget-tier-grid" id="modalBudgetGrid">
+            <!-- Dynamic budget cards -->
+          </div>
+        </div>
+
+        <!-- Highlights -->
+        <div class="modal-section-block">
+          <h3 class="ms-title"><i class="fa-solid fa-star text-accent"></i> Top Highlights</h3>
+          <ul class="modal-highlights-list" id="modalHighlightsList">
+            <!-- Dynamic highlights -->
+          </ul>
+        </div>
+
+        <!-- Local Food -->
+        <div class="modal-section-block">
+          <h3 class="ms-title"><i class="fa-solid fa-bowl-food text-accent"></i> Local Food to Savor</h3>
+          <div class="modal-food-tags" id="modalFoodTags">
+            <!-- Dynamic food tags -->
+          </div>
+        </div>
+
+        <!-- Transit Guide -->
+        <div class="modal-section-block">
+          <h3 class="ms-title"><i class="fa-solid fa-route text-accent"></i> How to Reach & Getting Around</h3>
+          <p id="modalTransitGuide" class="ms-paragraph"></p>
+        </div>
+
+        <!-- Insider Tips -->
+        <div class="modal-section-block modal-tip-box">
+          <i class="fa-solid fa-lightbulb text-accent"></i>
+          <div>
+            <strong>Insider Secret:</strong>
+            <p id="modalInsiderTip"></p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer-actions">
+        <button class="btn btn-outline" id="modalBookmarkBtn">
+          <i class="fa-regular fa-heart"></i> <span>Add to Bucket List</span>
+        </button>
+        <button class="btn btn-primary" id="modalEstimateTripBtn">
+          <i class="fa-solid fa-calculator"></i> <span>Estimate Trip Cost for This Place</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bucket List Modal -->
+  <div class="modal-backdrop" id="bucketListModal">
+    <div class="modal-dialog glass-panel">
+      <button class="modal-close-btn" id="closeBucketListModal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-header">
+        <span class="modal-tag"><i class="fa-solid fa-heart text-danger"></i> SAVED DESTINATIONS</span>
+        <h3 class="modal-title">My Travel Bucket List</h3>
+        <p class="modal-desc">Keep track of the destinations in India and worldwide you wish to explore.</p>
+      </div>
+      <div class="bucket-list-content" id="bucketListContainer">
+        <!-- Saved destinations -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toastNotification">
+    <div class="toast-icon"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="toast-message" id="toastMessage">Notification message</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
