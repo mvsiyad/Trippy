@@ -569,13 +569,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Footer category links
+  // Footer destination links
   document.querySelectorAll('.f-links a[data-filter]').forEach((link) => {
-    link.addEventListener('click', () => {
-      const filterKey = link.getAttribute('data-filter');
-      const targetDest = DESTINATIONS.find(d => d.id === filterKey || d.id.includes(filterKey));
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const filterKey = (link.getAttribute('data-filter') || '').toLowerCase().trim();
+      if (!filterKey) return;
+
+      const targetDest = DESTINATIONS.find((d) => {
+        const id = d.id.toLowerCase();
+        const country = d.country.toLowerCase();
+        const name = d.name.toLowerCase();
+
+        return (
+          id === filterKey ||
+          id.includes(filterKey) ||
+          filterKey.includes(id) ||
+          country.includes(filterKey) ||
+          name.includes(filterKey) ||
+          ((filterKey.includes('swiss') || filterKey.includes('switzerland')) && id === 'swiss-alps')
+        );
+      });
+
       if (targetDest) {
         openDestinationModal(targetDest.id);
+      } else {
+        const searchInput = document.getElementById('destinationSearch');
+        if (searchInput) {
+          searchInput.value = link.textContent.split(',')[0].trim();
+          currentSearchQuery = searchInput.value;
+          renderDestinations();
+        }
+        const destSection = document.getElementById('destinations');
+        if (destSection) {
+          destSection.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     });
   });
