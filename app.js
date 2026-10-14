@@ -280,6 +280,146 @@ document.addEventListener('DOMContentLoaded', () => {
       transitGuide: '16 km from Kaza along a winding paved mountain road. Can be combined in a single high-altitude day loop with Hikkim and Komic.',
       insiderTip: 'Plan your trip during the New Moon phase (1st and 4th weeks of the lunar calendar). When the moon is down, the Milky Way core is so bright it casts visible shadows on the ground!',
       proTipCalc: 'Buying fossils from children encourages illegal excavation of geological heritage; search for them yourself in the scree and leave them in place for future travelers.'
+    },
+
+    {
+      id: 'leh-ladakh',
+      name: 'Leh Ladakh & Pangong Tso',
+      region: 'Ladakh, India',
+      country: 'India',
+      category: 'india',
+      vibe: 'mountains',
+      budgetTier: 'mid',
+      image: 'assets/images/ladakh.jpg',
+      tagline: 'Land of High Mountain Passes & Color-Shifting Lakes',
+      snippet: 'High-altitude desert plateaus, dramatic cliffside monasteries, winding mountain passes above 17,500 ft, and the mystical color-changing waters of Pangong Tso.',
+      bestSeason: 'May to September (High Passes Open)',
+      bestMonths: [5, 6, 7, 8, 9],
+      dailyBudgetInr: '₹2,800 – ₹6,500',
+      avgDailyInr: 3800,
+      idealDays: '7–10 Days',
+      nearestAirport: 'Leh Kushok Bakula (IXL)',
+      highlights: [
+        'Driving over Khardung La Pass (17,982 ft) into the Nubra Valley dunes',
+        'Watching sunrise over the 134 km long indigo waters of Pangong Lake',
+        'Riding double-humped Bactrian camels across white sands in Hunder',
+        'Exploring the whitewashed cliffside Thiksey Monastery at morning prayers',
+        'Stargazing at the Hanle Dark Sky Reserve, one of the clearest on Earth'
+      ],
+      budgetBreakdown: {
+        backpacker: { rate: '₹1,500 – ₹2,200', desc: 'Shared sumos, Old Leh family homestays, local thukpa and momo cafes' },
+        midRange: { rate: '₹3,500 – ₹7,000', desc: 'Shared/rental 4x4 or Innova, boutique heritage hotels, Nubra deluxe camps' },
+        luxury: { rate: '₹12,000 – ₹28,000', desc: '5-star glamping retreats (Chamba Camp), private heated camps, dedicated guide' }
+      },
+      foods: ['Ladakhi Skyu (Stew with wheat dough)', 'Hot Butter Tea (Gur Gur Chai)', 'Tingmo with spicy Alu Phingsha', 'Fresh Apricot Jam & Tart', 'Steaming Mutton Momos'],
+      transitGuide: 'Fly directly into Leh (IXL) and mandatorily rest 48 hours for AMS acclimatization, or drive the iconic Manali–Leh or Srinagar–Leh highways during summer months.',
+      insiderTip: 'Do not plan any excursions on Day 1 and 2. Rest completely in Leh town (11,500 ft) to avoid acute mountain sickness before attempting high passes.',
+      proTipCalc: 'Inner Line Permits (ILP) are required for Nubra, Pangong, and Hanle. Apply online via the official LAHDC portal to skip third-party agent markups.'
+    },
+
+    {
+      id: 'kerala-backwaters',
+      name: 'Alleppey & Kerala Backwaters',
+      region: 'Kerala, India',
+      country: 'India',
+      category: 'india',
+      vibe: 'lakes',
+      budgetTier: 'mid',
+      image: 'assets/images/kerala.jpg',
+      tagline: 'God’s Own Country: Tropical Lagoons & Palm Canals',
+      snippet: 'Drift along serene emerald canals in traditional thatched Kettuvallam houseboats, explore spice plantations, and unwind with authentic Ayurvedic wellness rituals.',
+      bestSeason: 'October to March (Pleasant Tropical Breeze)',
+      bestMonths: [10, 11, 12, 1, 2, 3],
+      dailyBudgetInr: '₹2,200 – ₹5,800',
+      avgDailyInr: 3200,
+      idealDays: '4–6 Days',
+      nearestAirport: 'Cochin International (COK)',
+      highlights: [
+        'Cruising through narrow village canals on an eco-friendly wooden canoe (Shikara)',
+        'Overnight stay on a luxury traditional thatched houseboat with onboard chef',
+        'Catching sunset over Chinese fishing nets in historic Fort Kochi',
+        'Trekking through lush rolling tea estates in nearby Munnar hills',
+        'Witnessing traditional Kathakali classical dance and Kalaripayattu martial arts'
+      ],
+      budgetBreakdown: {
+        backpacker: { rate: '₹1,200 – ₹1,800', desc: 'Government SWTD ferry boats, village homestays, local banana-leaf fish curry meals' },
+        midRange: { rate: '₹3,000 – ₹6,000', desc: 'Private AC canoe day tours, canal-side heritage resorts, fresh seafood dining' },
+        luxury: { rate: '₹10,000 – ₹24,000', desc: 'Private luxury multi-room houseboat, Ayurveda wellness spa retreats, chauffeur transfers' }
+      },
+      foods: ['Karimeen Pollichathu (Pearl Spot in banana leaf)', 'Appam with Vegetable/Chicken Stew', 'Kerala Sadya feast on banana leaf', 'Malabar Parotta with Roast', 'Fresh Tender Coconut Water'],
+      transitGuide: 'Fly into Cochin International (COK), then take a 1.5-hour taxi or train south to Alleppey (Alappuzha). Within backwaters, government passenger ferries cost under ₹40 per ride.',
+      insiderTip: 'Instead of an expensive 24-hr houseboat, book a 3-hour hand-rowed country canoe for ₹1,200. It accesses the narrowest, most authentic village canals where big houseboats cannot enter!',
+      proTipCalc: 'State water transport ferries (SWTD) operate like commuter buses through the backwaters—take the Alleppey to Kottayam ferry route for ₹30 for an incredible 2.5-hour scenic cruise.'
+    },
+
+    {
+      id: 'bali-indonesia',
+      name: 'Bali & Nusa Penida',
+      region: 'Lesser Sunda Islands, Indonesia',
+      country: 'Indonesia',
+      category: 'international',
+      vibe: 'culture',
+      budgetTier: 'mid',
+      image: 'assets/images/bali.jpg',
+      tagline: 'Island of the Gods: Sacred Cliffs & Tropical Cascades',
+      snippet: 'Lush terraced rice paddies in Ubud, ancient volcanic sea temples, roaring jungle waterfalls, and breathtaking cliffhead lookouts towering above azure Indian Ocean breakers.',
+      bestSeason: 'April to October (Dry Season & Low Humidity)',
+      bestMonths: [4, 5, 6, 7, 8, 9, 10],
+      dailyBudgetInr: '₹3,200 – ₹8,500',
+      avgDailyInr: 4500,
+      idealDays: '6–8 Days',
+      nearestAirport: 'Denpasar Bali (DPS)',
+      highlights: [
+        'Standing at the edge of Kelingking T-Rex cliff viewpoint in Nusa Penida',
+        'Sunrise trek up active volcano Mount Batur overlooking Lake Batur',
+        'Walking through the UNESCO emerald stepped rice terraces of Tegallalang',
+        'Visiting cliffside Uluwatu Temple for the evening Kecak Fire Dance at sunset',
+        'Snorkeling with wild manta rays in the crystal waters of Manta Point'
+      ],
+      budgetBreakdown: {
+        backpacker: { rate: '₹1,800 – ₹2,800', desc: 'Hostels & guesthouses with pool, rented scooter, local warung dining (Nasi Goreng)' },
+        midRange: { rate: '₹4,500 – ₹9,000', desc: 'Private pool villa in Ubud or Canggu, shared speedboats, cafe hopping' },
+        luxury: { rate: '₹15,000 – ₹35,000', desc: '5-star cliffside ocean resort, private chauffeur, beach clubs, luxury spa rituals' }
+      },
+      foods: ['Nasi Campur Bali', 'Babi Guling (Spiced roast pork)', 'Sate Lilit (Minced seafood skewers)', 'Pisang Goreng with honey', 'Fresh Dragonfruit & Coconut Smoothie Bowls'],
+      transitGuide: 'Fly into Denpasar (DPS). Renting a scooter (₹450/day) is popular for solo travelers, while hiring a private car with driver runs roughly ₹2,800–₹3,200 for a full 10-hour day.',
+      insiderTip: 'Take the early 07:30 AM fast boat from Sanur to Nusa Penida to beat the crowds at Kelingking Beach and Broken Beach before tour groups arrive at 11:00 AM.',
+      proTipCalc: 'Use local transport apps Grab and Gojek for food delivery and short rides to avoid inflated tourist taxi rates.'
+    },
+
+    {
+      id: 'amalfi-coast',
+      name: 'Positano & Amalfi Coast',
+      region: 'Campania, Italy',
+      country: 'Italy',
+      category: 'international',
+      vibe: 'culture',
+      budgetTier: 'luxury',
+      image: 'assets/images/amalfi.jpg',
+      tagline: 'Vertical Cliffside Havens & Mediterranean Azure',
+      snippet: 'Pastel villages tumbling dramatically down sheer cliffs to turquoise coves, fragrant cliffside lemon groves, seaside trattorias, and the scenic Path of the Gods hiking trail.',
+      bestSeason: 'May to June & September to October (Warm & Mellow)',
+      bestMonths: [5, 6, 9, 10],
+      dailyBudgetInr: '₹12,000 – ₹32,000',
+      avgDailyInr: 15500,
+      idealDays: '4–6 Days',
+      nearestAirport: 'Naples (NAP) / Rome (FCO)',
+      highlights: [
+        'Admiring Positano’s iconic cascading pastel houses from a vintage wooden Riva boat',
+        'Hiking the legendary Path of the Gods (Sentiero degli Dei) high above the coastline',
+        'Visiting the romantic cliffside gardens of Villa Cimbrone and Villa Rufolo in Ravello',
+        'Sampling chilled handmade Limoncello in fragrant Amalfi lemon orchards',
+        'Day trip ferry to the crystalline Blue Grotto and Faraglioni rocks of Capri'
+      ],
+      budgetBreakdown: {
+        backpacker: { rate: '₹7,000 – ₹10,500', desc: 'Guesthouses in Sorrento or Salerno, SITA buses & ferries, pizza al taglio & paninis' },
+        midRange: { rate: '₹14,000 – ₹26,000', desc: 'Boutique cliffside hotel in Praiano or Minori, public ferries, seaside trattorias' },
+        luxury: { rate: '₹35,000 – ₹80,000', desc: '5-star historic cliffside resort, private Gozzo boat charters, Michelin-starred dining' }
+      },
+      foods: ['Spaghetti alle Vongole (Clams)', 'Delizia al Limone (Amalfi Lemon Pastry)', 'Authentic Neapolitan Pizza', 'Insalata Caprese with fresh Buffalo Mozzarella', 'Chilled Artisanal Limoncello'],
+      transitGuide: 'Take high-speed train from Rome to Naples, then regional train to Sorrento or Salerno. From there, scenic Travelmar ferries connect Positano, Amalfi, and Minori without cliffside road traffic.',
+      insiderTip: 'Avoid driving rental cars along the Amalfi drive in peak season—the narrow clifftop road has standstill traffic. Travel by ferry instead: it offers breathtaking views from the water and zero congestion!',
+      proTipCalc: 'Stay in Praiano, Minori, or Vietri sul Mare instead of Positano center—hotel rates are 50% cheaper, but Positano is just a 15-minute scenic ferry or bus ride away.'
     }
   ];
 
@@ -715,22 +855,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // =========================================================================
-  // 8. Month-by-Month "When to Go" Season Radar
-  // =========================================================================
+  // Seasonal radar
   const MONTHS_DATA = {
-    1: { name: 'January', tag: 'PEAK WINTER SNOW & CHILL', summary: 'Kashmir transforms into a winter wonderland with skiing in Gulmarg. Iceland dazzles with peak Northern Lights and crystal blue ice caves.', places: ['kashmir-valley', 'iceland-aurora', 'swiss-alps'] },
-    2: { name: 'February', tag: 'DEEP SNOW & FROZEN WONDERS', summary: 'Crisp blue skies and frozen waterfalls in Kashmir and Swiss Alps. Clear dark skies for aurora hunters in Iceland.', places: ['kashmir-valley', 'iceland-aurora', 'swiss-alps'] },
-    3: { name: 'March', tag: 'SPRING BLOSSOMS & SHOULDER DEALS', summary: 'Kyoto’s legendary cherry blossoms (Sakura) begin to bloom in late March. Lower altitude Himalayan valleys warm up with apple blossoms.', places: ['kyoto-japan', 'kashmir-valley'] },
-    4: { name: 'April', tag: 'SPRINGTIME AWAKENING', summary: 'Peak cherry blossom season across Kyoto. Srinagar’s Indira Gandhi Memorial Tulip Garden opens with millions of vibrant tulips in bloom.', places: ['kyoto-japan', 'kashmir-valley'] },
-    5: { name: 'May', tag: 'PLEASANT MOUNTAIN ESCAPES', summary: 'Pleasant temperate weather across Kashmir and Swiss foothills. Snow melts as lower passes in Himachal open for hiking.', places: ['kashmir-valley', 'swiss-alps', 'key-monastery'] },
-    6: { name: 'June', tag: 'HIGH-PASS OPENING & MIDNIGHT SUN', summary: 'Kunzum Pass officially opens! Spiti Valley and Chandratal lake become accessible. Swiss Alps meadows turn emerald green.', places: ['spiti-valley', 'chandratal-lake', 'swiss-alps'] },
-    7: { name: 'July', tag: 'ALPINE GLAMPING & RAINSHADOW OASIS', summary: 'While plains experience heavy monsoon, Spiti is a protected cold desert rainshadow with dry sunny skies and warm days.', places: ['spiti-valley', 'chandratal-lake', 'langza-stargazing'] },
-    8: { name: 'August', tag: 'SUMMER PRIME & WILDFLOWERS', summary: 'Peak wildflowers and turquoise glacial reflections at Chandratal. Warm summer days for hiking in the Swiss Bernese Oberland.', places: ['chandratal-lake', 'spiti-valley', 'swiss-alps'] },
-    9: { name: 'September', tag: 'THE GOLDEN WINDOW (BEST OVERALL)', summary: 'Arguably the single best travel month for Spiti and the Himalayas: crystal clear skies, zero rain, golden poplars, and peak Milky Way nights.', places: ['spiti-valley', 'langza-stargazing', 'iceland-aurora'] },
-    10: { name: 'October', tag: 'AUTUMN CRIMSON & CRISP AIR', summary: 'Kashmir’s Chinar trees turn fiery crimson and gold. Kyoto’s autumn foliage (koyo) begins. Spiti is crisp with first light dustings of snow.', places: ['kashmir-valley', 'kyoto-japan', 'key-monastery'] },
-    11: { name: 'November', tag: 'PEAK AUTUMN LEAVES & ARCTIC NIGHTS', summary: 'Kyoto’s maple foliage peaks with illuminated evening gardens. Iceland’s long dark nights provide 16+ hours of Northern Lights opportunities.', places: ['kyoto-japan', 'iceland-aurora'] },
-    12: { name: 'December', tag: 'FAIRYTALE WINTER FESTIVITIES', summary: 'Snow dusts Swiss alpine chalets in Lauterbrunnen and Zermatt. Frozen waterfalls in Gulmarg and magical Christmas markets across Europe.', places: ['swiss-alps', 'kashmir-valley', 'iceland-aurora'] }
+    1: { name: 'January', tag: 'PEAK WINTER SNOW & TROPICAL SUN', summary: 'Kashmir transforms into a winter wonderland with skiing in Gulmarg. Kerala backwaters offer idyllic warm sunny breezes, and Iceland dazzles with blue ice caves.', places: ['kashmir-valley', 'kerala-backwaters', 'iceland-aurora'] },
+    2: { name: 'February', tag: 'DEEP SNOW & FROZEN WONDERS', summary: 'Crisp blue skies and frozen waterfalls in Kashmir and Swiss Alps. Warm tropical cruising in Kerala and clear dark aurora skies in Iceland.', places: ['kerala-backwaters', 'kashmir-valley', 'swiss-alps'] },
+    3: { name: 'March', tag: 'SPRING BLOSSOMS & SHOULDER DEALS', summary: 'Kyoto’s legendary cherry blossoms (Sakura) begin to bloom in late March. Lower altitude Himalayan valleys warm up with apple blossoms.', places: ['kyoto-japan', 'kashmir-valley', 'kerala-backwaters'] },
+    4: { name: 'April', tag: 'SPRINGTIME AWAKENING', summary: 'Peak cherry blossom season across Kyoto. Srinagar’s Indira Gandhi Memorial Tulip Garden opens with millions of vibrant tulips in bloom.', places: ['kyoto-japan', 'kashmir-valley', 'bali-indonesia'] },
+    5: { name: 'May', tag: 'MEDITERRANEAN SPRING & HIMALAYAN PASSES', summary: 'Positano and the Amalfi Coast bloom with pleasant temperatures. Snow melts across Swiss foothills and lower Himalayan passes open.', places: ['amalfi-coast', 'bali-indonesia', 'swiss-alps'] },
+    6: { name: 'June', tag: 'HIGH-PASS OPENING & MIDNIGHT SUN', summary: 'Kunzum and Khardung La passes officially open! Spiti Valley and Leh Ladakh become accessible. Swiss Alps meadows turn emerald green.', places: ['spiti-valley', 'leh-ladakh', 'swiss-alps'] },
+    7: { name: 'July', tag: 'ALPINE EXPEDITIONS & RAINSHADOW OASIS', summary: 'While Indian plains experience monsoon, Ladakh and Spiti sit in dry rainshadow with clear sunny skies. Bali enjoys peak dry surfing season.', places: ['leh-ladakh', 'spiti-valley', 'bali-indonesia'] },
+    8: { name: 'August', tag: 'SUMMER PRIME & WILDFLOWERS', summary: 'Peak wildflowers at Chandratal and Pangong Tso. Sunny dry days across Bali’s cliff lookouts and warm hiking weather in the Swiss Alps.', places: ['leh-ladakh', 'chandratal-lake', 'bali-indonesia'] },
+    9: { name: 'September', tag: 'THE GOLDEN WINDOW (BEST OVERALL)', summary: 'Arguably the single best travel month for Spiti, Ladakh, and the Amalfi Coast: crystal clear skies, zero rain, golden poplars, and peak Milky Way nights.', places: ['spiti-valley', 'amalfi-coast', 'leh-ladakh'] },
+    10: { name: 'October', tag: 'AUTUMN CRIMSON & CRISP AIR', summary: 'Kashmir’s Chinar trees turn fiery crimson and gold. Kyoto’s autumn foliage begins and the Amalfi Coast offers mellow uncrowded beaches.', places: ['amalfi-coast', 'kashmir-valley', 'kyoto-japan'] },
+    11: { name: 'November', tag: 'PEAK AUTUMN LEAVES & BACKWATER BREEZES', summary: 'Kyoto’s maple foliage peaks with illuminated evening gardens. Kerala enters its prime cruising weather and Arctic nights return to Iceland.', places: ['kerala-backwaters', 'kyoto-japan', 'iceland-aurora'] },
+    12: { name: 'December', tag: 'FAIRYTALE WINTER & TROPICAL ESCAPES', summary: 'Snow dusts Swiss alpine chalets in Lauterbrunnen and Zermatt. Frozen waterfalls in Gulmarg and golden tropical sunsets across Kerala backwaters.', places: ['kerala-backwaters', 'swiss-alps', 'iceland-aurora'] }
   };
 
   const monthBtns = document.querySelectorAll('.month-btn');
