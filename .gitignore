@@ -13,3 +13,5 @@ Desktop.ini
 *.log
 .temp/
 .cache/
+node_modules/
+

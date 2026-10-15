@@ -17,11 +17,18 @@ An interactive travel discovery guide and trip cost estimator for iconic destina
 - Google Fonts (Outfit, Plus Jakarta Sans, JetBrains Mono)
 
 ## Getting Started
-Clone the repository and open `index.html` in your browser:
 
+### Option 1: Using npm (Recommended)
 ```bash
+# Clone the repository
 git clone https://github.com/mvsiyad/Trippy.git
 cd Trippy
-```
 
-Open `index.html` directly or serve using any static web server.
+# Start the local development server
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Option 2: Direct Browser / No Installation
+Double-click `index.html` or open it directly in any modern web browser (or right-click `index.html` &rarr; **Open with Live Server** in VS Code).
+

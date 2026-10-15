@@ -1,0 +1,12 @@
+{
+  "name": "trippy",
+  "version": "1.0.0",
+  "description": "Interactive travel discovery guide and trip cost estimator",
+  "scripts": {
+    "dev": "serve .",
+    "start": "serve ."
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
