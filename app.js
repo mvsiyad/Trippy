@@ -709,6 +709,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Hero quick search tag chips
+  document.querySelectorAll('.quick-tag-chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const tagText = chip.getAttribute('data-search') || chip.textContent.replace('#', '');
+      if (searchInput) {
+        searchInput.value = tagText;
+        currentSearchQuery = tagText;
+        if (clearSearchBtn) clearSearchBtn.classList.add('active');
+        renderDestinations();
+        const destSection = document.getElementById('destinations');
+        if (destSection) {
+          destSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
   // Footer destination links
   document.querySelectorAll('.f-links a[data-filter]').forEach((link) => {
     link.addEventListener('click', (e) => {
@@ -1080,16 +1097,57 @@ document.addEventListener('DOMContentLoaded', () => {
   if (openBucketListBtn) openBucketListBtn.addEventListener('click', openBucketListModal);
   if (closeBucketListModalBtn) closeBucketListModalBtn.addEventListener('click', closeBucketListModal);
 
+  // Guide route buttons (Spiti, Ladakh, Kerala, Swiss Alps, Kyoto)
+  document.querySelectorAll('.guide-route-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const destId = btn.getAttribute('data-dest-id');
+      if (destId) {
+        openDestinationModal(destId);
+      }
+    });
+  });
+
+  // High Altitude Advisory Modal
+  const guideAdvisoryModal = document.getElementById('guideAdvisoryModal');
+  const openGuideAdvisoryBtn = document.getElementById('openGuideAdvisoryBtn');
+  const closeGuideAdvisoryBtn = document.getElementById('closeGuideAdvisoryBtn');
+  const ackGuideAdvisoryBtn = document.getElementById('ackGuideAdvisoryBtn');
+
+  function openGuideAdvisory() {
+    if (guideAdvisoryModal) {
+      guideAdvisoryModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeGuideAdvisory() {
+    if (guideAdvisoryModal) {
+      guideAdvisoryModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (openGuideAdvisoryBtn) openGuideAdvisoryBtn.addEventListener('click', openGuideAdvisory);
+  if (closeGuideAdvisoryBtn) closeGuideAdvisoryBtn.addEventListener('click', closeGuideAdvisory);
+  if (ackGuideAdvisoryBtn) {
+    ackGuideAdvisoryBtn.addEventListener('click', () => {
+      closeGuideAdvisory();
+      showToast('Altitude safety briefing acknowledged & logged.');
+    });
+  }
+
   // Close modals on clicking outside or pressing Escape
   window.addEventListener('click', (e) => {
     if (e.target === destinationModal) closeDestinationModal();
     if (e.target === bucketListModal) closeBucketListModal();
+    if (e.target === guideAdvisoryModal) closeGuideAdvisory();
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeDestinationModal();
       closeBucketListModal();
+      closeGuideAdvisory();
     }
   });
 
@@ -1111,6 +1169,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     drawerClose.addEventListener('click', closeDrawer);
     document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', closeDrawer));
+  }
+
+  // Smooth scroll entrance animations for sections
+  const revealElements = document.querySelectorAll('.section-spacing, .expert-guide-section, .hero-content-wrapper');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.05,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach((el) => {
+      el.classList.add('reveal-init');
+      revealObserver.observe(el);
+    });
   }
 
 });
