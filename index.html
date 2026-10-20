@@ -25,13 +25,7 @@
 </head>
 <body>
 
-  <!-- Ambient Glassmorphism Atmospheric Background Orbs -->
-  <div class="ambient-glow-wrap" aria-hidden="true">
-    <div class="ambient-orb orb-primary"></div>
-    <div class="ambient-orb orb-secondary"></div>
-    <div class="ambient-orb orb-tertiary"></div>
-    <div class="ambient-orb orb-accent"></div>
-  </div>
+
 
   <!-- Announcement Bar -->
   <div class="announcement-bar" id="announcementBar">
@@ -62,12 +56,12 @@
       </nav>
 
       <div class="nav-actions">
-        <button class="btn btn-outline btn-sm" id="openBucketListBtn">
+        <button class="btn btn-outline btn-sm btn-bucket" id="openBucketListBtn" aria-label="Open Bucket List">
           <i class="fa-solid fa-heart text-danger"></i>
-          <span>My Bucket List</span>
+          <span class="btn-text">My Bucket List</span>
           <span class="bucket-counter" id="bucketCount">0</span>
         </button>
-        <a href="#budget-calculator" class="btn btn-primary btn-sm pulse-glow">
+        <a href="#budget-calculator" class="btn btn-primary btn-sm pulse-glow header-calc-btn">
           <i class="fa-solid fa-calculator"></i>
           <span>Trip Cost Estimator</span>
         </a>
@@ -265,18 +259,18 @@
 
         <!-- Month Switcher Grid -->
         <div class="month-selector-bar" id="monthSelectorBar">
-          <button class="month-btn" data-month="1">Jan</button>
-          <button class="month-btn" data-month="2">Feb</button>
-          <button class="month-btn" data-month="3">Mar</button>
-          <button class="month-btn" data-month="4">Apr</button>
-          <button class="month-btn" data-month="5">May</button>
-          <button class="month-btn active" data-month="6">Jun</button>
-          <button class="month-btn" data-month="7">Jul</button>
-          <button class="month-btn" data-month="8">Aug</button>
-          <button class="month-btn" data-month="9">Sep</button>
-          <button class="month-btn" data-month="10">Oct</button>
-          <button class="month-btn" data-month="11">Nov</button>
-          <button class="month-btn" data-month="12">Dec</button>
+          <button class="month-btn" data-month="1"><span class="m-icon">❄️</span> Jan</button>
+          <button class="month-btn" data-month="2"><span class="m-icon">❄️</span> Feb</button>
+          <button class="month-btn" data-month="3"><span class="m-icon">🌸</span> Mar</button>
+          <button class="month-btn" data-month="4"><span class="m-icon">🌸</span> Apr</button>
+          <button class="month-btn" data-month="5"><span class="m-icon">☀️</span> May</button>
+          <button class="month-btn active" data-month="6"><span class="m-icon">☀️</span> Jun</button>
+          <button class="month-btn" data-month="7"><span class="m-icon">☀️</span> Jul</button>
+          <button class="month-btn" data-month="8"><span class="m-icon">☀️</span> Aug</button>
+          <button class="month-btn" data-month="9"><span class="m-icon">🍂</span> Sep</button>
+          <button class="month-btn" data-month="10"><span class="m-icon">🍂</span> Oct</button>
+          <button class="month-btn" data-month="11"><span class="m-icon">🍁</span> Nov</button>
+          <button class="month-btn" data-month="12"><span class="m-icon">❄️</span> Dec</button>
         </div>
 
         <!-- Month Spotlight Box -->
@@ -373,13 +367,35 @@
 
           <div class="calc-results-card glass-panel">
             <div class="results-header">
-              <span class="est-tag"><i class="fa-solid fa-coins"></i> ESTIMATED TOTAL BUDGET</span>
+              <div class="results-meta-top">
+                <span class="est-tag"><i class="fa-solid fa-coins"></i> ESTIMATED TOTAL BUDGET</span>
+                <div class="currency-toggle-group" id="currencyToggleGroup">
+                  <button type="button" class="curr-pill active" data-curr="INR">₹ INR</button>
+                  <button type="button" class="curr-pill" data-curr="USD">$ USD</button>
+                  <button type="button" class="curr-pill" data-curr="EUR">€ EUR</button>
+                  <button type="button" class="curr-pill" data-curr="GBP">£ GBP</button>
+                </div>
+              </div>
               <div class="big-price-display">
-                <span class="curr-symbol">₹</span>
+                <span class="curr-symbol" id="calcCurrSymbol">₹</span>
                 <span class="total-number" id="calcTotalInr">38,500</span>
-                <span class="usd-alt" id="calcTotalUsd">(~$460 USD)</span>
+                <span class="usd-alt" id="calcTotalUsd"></span>
               </div>
               <p class="per-traveler-line" id="calcPerPersonLine">Approx. <strong>₹19,250</strong> per traveler for 7 days</p>
+
+              <!-- Proportional Visual Expense Breakdown Bar -->
+              <div class="expense-proportion-bar" id="expenseProportionBar" title="Visual Expense Breakdown">
+                <div class="ep-seg ep-stay" id="barStay" style="width: 38%" title="Lodging (38%)"></div>
+                <div class="ep-seg ep-transit" id="barTransit" style="width: 30%" title="Transit (30%)"></div>
+                <div class="ep-seg ep-food" id="barFood" style="width: 20%" title="Food (20%)"></div>
+                <div class="ep-seg ep-activity" id="barActivity" style="width: 12%" title="Activities (12%)"></div>
+              </div>
+              <div class="proportion-legend">
+                <span><i class="dot dot-stay"></i> Stay</span>
+                <span><i class="dot dot-transit"></i> Transit</span>
+                <span><i class="dot dot-food"></i> Food</span>
+                <span><i class="dot dot-activity"></i> Activities</span>
+              </div>
             </div>
 
             <div class="expense-breakdown-list">
@@ -423,6 +439,15 @@
             <div class="budget-save-tip">
               <i class="fa-solid fa-lightbulb text-accent"></i>
               <span id="calcProTip"><strong>Pro-Tip for Spiti:</strong> Traveling in a group of 3–4 splits vehicle and cab costs dramatically, saving up to 40% per person!</span>
+            </div>
+
+            <div class="calc-card-actions">
+              <button type="button" class="btn btn-outline btn-sm" id="calcExploreBtn">
+                <i class="fa-solid fa-compass"></i> View Full Route Guide
+              </button>
+              <button type="button" class="btn btn-primary btn-sm" id="calcSavePlanBtn">
+                <i class="fa-solid fa-heart"></i> Save to Bucket List
+              </button>
             </div>
           </div>
 

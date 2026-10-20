@@ -596,19 +596,19 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }).join('');
 
-    // Attach click listeners to cards
-    destinationsGrid.querySelectorAll('.view-guide-btn').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        const id = btn.getAttribute('data-id');
+    // Attach click listeners to entire cards and child elements
+    destinationsGrid.querySelectorAll('.destination-card').forEach((card) => {
+      card.addEventListener('click', (e) => {
+        // If clicking bookmark button, toggle bookmark only
+        if (e.target.closest('.btn-card-bookmark')) {
+          e.stopPropagation();
+          const bookmarkBtn = e.target.closest('.btn-card-bookmark');
+          const id = bookmarkBtn.getAttribute('data-id');
+          toggleBucketItem(id);
+          return;
+        }
+        const id = card.getAttribute('data-id');
         openDestinationModal(id);
-      });
-    });
-
-    destinationsGrid.querySelectorAll('.btn-card-bookmark').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const id = btn.getAttribute('data-id');
-        toggleBucketItem(id);
       });
     });
   }
@@ -908,10 +908,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!dest) return '';
         return `
           <div class="spotlight-place-card" data-id="${dest.id}">
-            <span class="sp-country">${dest.country}</span>
-            <h4 class="sp-title">${dest.name}</h4>
-            <p class="sp-why">${dest.tagline}</p>
-            <span class="sp-cost"><i class="fa-solid fa-coins text-accent"></i> ${dest.dailyBudgetInr} / day</span>
+            <div class="sp-img-wrap">
+              <img src="${dest.image}" alt="${dest.name}" class="sp-thumb" loading="lazy">
+              <span class="sp-country-badge">${dest.country}</span>
+            </div>
+            <div class="sp-content">
+              <h4 class="sp-title">${dest.name}</h4>
+              <p class="sp-why">${dest.tagline}</p>
+              <div class="sp-footer">
+                <span class="sp-cost"><i class="fa-solid fa-coins text-accent"></i> ${dest.dailyBudgetInr} / day</span>
+                <span class="sp-explore-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+              </div>
+            </div>
           </div>
         `;
       }).join('');
@@ -945,6 +953,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const calcTravDec = document.getElementById('calcTravDec');
   const calcTravInc = document.getElementById('calcTravInc');
 
+  const calcCurrSymbol = document.getElementById('calcCurrSymbol');
   const calcTotalInr = document.getElementById('calcTotalInr');
   const calcTotalUsd = document.getElementById('calcTotalUsd');
   const calcPerPersonLine = document.getElementById('calcPerPersonLine');
@@ -953,6 +962,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const expFoodCost = document.getElementById('expFoodCost');
   const expActivityCost = document.getElementById('expActivityCost');
   const calcProTip = document.getElementById('calcProTip');
+
+  const barStay = document.getElementById('barStay');
+  const barTransit = document.getElementById('barTransit');
+  const barFood = document.getElementById('barFood');
+  const barActivity = document.getElementById('barActivity');
+  const calcExploreBtn = document.getElementById('calcExploreBtn');
+  const calcSavePlanBtn = document.getElementById('calcSavePlanBtn');
+
+  let currentCurrency = 'INR';
+  const CURRENCY_CONFIG = {
+    INR: { symbol: '₹', rate: 1, locale: 'en-IN' },
+    USD: { symbol: '$', rate: 1 / 84, locale: 'en-US' },
+    EUR: { symbol: '€', rate: 1 / 91, locale: 'de-DE' },
+    GBP: { symbol: '£', rate: 1 / 107, locale: 'en-GB' }
+  };
 
   if (calcDestinationSelect) {
     calcDestinationSelect.innerHTML = DESTINATIONS.map(d => `<option value="${d.id}">${d.name} (${d.country})</option>`).join('');
@@ -982,24 +1006,77 @@ document.addEventListener('DOMContentLoaded', () => {
     const activityCost = Math.round(baseDaily * 0.12 * days * travelers);
 
     const totalInr = stayCost + transitCost + foodCost + activityCost;
-    const totalUsd = Math.round(totalInr / 84);
-    const perPersonInr = Math.round(totalInr / travelers);
+    const currConf = CURRENCY_CONFIG[currentCurrency] || CURRENCY_CONFIG.INR;
+    const convertedTotal = Math.round(totalInr * currConf.rate);
+    const convertedPerPerson = Math.round((totalInr / travelers) * currConf.rate);
 
-    const formatInr = (n) => '₹' + n.toLocaleString('en-IN');
+    const formatCost = (inrVal) => {
+      const val = Math.round(inrVal * currConf.rate);
+      return currConf.symbol + val.toLocaleString(currConf.locale);
+    };
 
     if (calcDaysVal) calcDaysVal.textContent = `${days} Days`;
-    if (calcTotalInr) calcTotalInr.textContent = totalInr.toLocaleString('en-IN');
-    if (calcTotalUsd) calcTotalUsd.textContent = `(~$${totalUsd.toLocaleString('en-US')} USD)`;
-    if (calcPerPersonLine) calcPerPersonLine.innerHTML = `Approx. <strong>${formatInr(perPersonInr)}</strong> per traveler for ${days} days`;
+    if (calcCurrSymbol) calcCurrSymbol.textContent = currConf.symbol;
+    if (calcTotalInr) calcTotalInr.textContent = convertedTotal.toLocaleString(currConf.locale);
 
-    if (expStayCost) expStayCost.textContent = formatInr(stayCost);
-    if (expTransitCost) expTransitCost.textContent = formatInr(transitCost);
-    if (expFoodCost) expFoodCost.textContent = formatInr(foodCost);
-    if (expActivityCost) expActivityCost.textContent = formatInr(activityCost);
+    if (calcTotalUsd) {
+      if (currentCurrency === 'INR') {
+        const usdVal = Math.round(totalInr / 84);
+        calcTotalUsd.textContent = `(~$${usdVal.toLocaleString('en-US')} USD)`;
+      } else {
+        calcTotalUsd.textContent = `(~₹${totalInr.toLocaleString('en-IN')})`;
+      }
+    }
+
+    if (calcPerPersonLine) {
+      calcPerPersonLine.innerHTML = `Approx. <strong>${currConf.symbol}${convertedPerPerson.toLocaleString(currConf.locale)}</strong> per traveler for ${days} days`;
+    }
+
+    if (expStayCost) expStayCost.textContent = formatCost(stayCost);
+    if (expTransitCost) expTransitCost.textContent = formatCost(transitCost);
+    if (expFoodCost) expFoodCost.textContent = formatCost(foodCost);
+    if (expActivityCost) expActivityCost.textContent = formatCost(activityCost);
+
+    // Dynamic Stacked Expense Proportion Bar
+    const pStay = Math.round((stayCost / totalInr) * 100);
+    const pTransit = Math.round((transitCost / totalInr) * 100);
+    const pFood = Math.round((foodCost / totalInr) * 100);
+    const pAct = Math.max(0, 100 - (pStay + pTransit + pFood));
+
+    if (barStay) barStay.style.width = `${pStay}%`;
+    if (barTransit) barTransit.style.width = `${pTransit}%`;
+    if (barFood) barFood.style.width = `${pFood}%`;
+    if (barActivity) barActivity.style.width = `${pAct}%`;
 
     if (calcProTip) {
       calcProTip.innerHTML = `<strong>Pro-Tip for ${dest.name.split('&')[0].trim()}:</strong> ${dest.proTipCalc}`;
     }
+  }
+
+  // Currency Switcher listeners
+  document.querySelectorAll('.curr-pill').forEach((pill) => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.curr-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentCurrency = pill.getAttribute('data-curr') || 'INR';
+      recalculateTripBudget();
+    });
+  });
+
+  if (calcExploreBtn) {
+    calcExploreBtn.addEventListener('click', () => {
+      const destId = calcDestinationSelect.value;
+      if (destId) openDestinationModal(destId);
+    });
+  }
+
+  if (calcSavePlanBtn) {
+    calcSavePlanBtn.addEventListener('click', () => {
+      const destId = calcDestinationSelect.value;
+      if (destId) {
+        toggleBucketItem(destId);
+      }
+    });
   }
 
   if (calcDestinationSelect) calcDestinationSelect.addEventListener('change', recalculateTripBudget);
@@ -1191,6 +1268,33 @@ document.addEventListener('DOMContentLoaded', () => {
       el.classList.add('reveal-init');
       revealObserver.observe(el);
     });
+  }
+
+  // Active navigation scrollspy
+  const pageSections = document.querySelectorAll('section[id]');
+  const desktopNavLinks = document.querySelectorAll('.desktop-nav .nav-link');
+  if (pageSections.length > 0 && desktopNavLinks.length > 0) {
+    window.addEventListener('scroll', () => {
+      let currentSectionId = '';
+      const scrollPos = window.scrollY + 140;
+
+      pageSections.forEach((section) => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      if (currentSectionId) {
+        desktopNavLinks.forEach((link) => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    }, { passive: true });
   }
 
 });
