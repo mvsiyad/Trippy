@@ -68,7 +68,7 @@ const getCarouselConfig = (width: number): CarouselConfig => {
       distanceDivisor: 120,
       velocityDivisor: 500,
       sensitivity: 180,
-      xMultiplier: 90,
+      xMultiplier: 105,
       yMultiplier: 20,
       rotationMultiplier: 8,
       scaleReduction: 0.06,
@@ -79,20 +79,20 @@ const getCarouselConfig = (width: number): CarouselConfig => {
       distanceDivisor: 160,
       velocityDivisor: 650,
       sensitivity: 220,
-      xMultiplier: 130,
-      yMultiplier: 30,
-      rotationMultiplier: 10,
-      scaleReduction: 0.09,
+      xMultiplier: 155,
+      yMultiplier: 32,
+      rotationMultiplier: 9,
+      scaleReduction: 0.08,
     };
   }
   return {
-    distanceDivisor: 200,
-    velocityDivisor: 800,
-    sensitivity: 250,
-    xMultiplier: 170,
-    yMultiplier: 40,
-    rotationMultiplier: 12,
-    scaleReduction: 0.12,
+    distanceDivisor: 210,
+    velocityDivisor: 820,
+    sensitivity: 260,
+    xMultiplier: 210,
+    yMultiplier: 42,
+    rotationMultiplier: 11,
+    scaleReduction: 0.1,
   };
 };
 
@@ -155,8 +155,8 @@ const CarouselStacked = ({ slides = defaultSlides, className, onCardClick }: Car
   };
 
   return (
-    <div className={cn("flex flex-col items-center justify-center w-full py-8 overflow-hidden select-none", className)}>
-      <div className="relative w-full max-w-7xl h-80 sm:h-112 lg:h-128 flex items-center justify-center">
+    <div className={cn("flex flex-col items-center justify-center w-full py-6 lg:py-10 overflow-hidden select-none", className)}>
+      <div className="relative w-full max-w-7xl h-92 sm:h-[30rem] lg:h-[34rem] xl:h-[36rem] flex items-center justify-center">
         {/* Transparent Drag Surface */}
         <motion.div
           drag="x"
@@ -246,7 +246,7 @@ const Card = ({ slide, index, total, progress, config, onClick }: CardProps) => 
       onClick={onClick}
       className={cn(
         "absolute rounded-2xl overflow-hidden bg-muted group pointer-events-none shadow-2xl transition-shadow",
-        "w-48 h-64 sm:w-64 sm:h-88 lg:w-72 lg:h-104",
+        "w-52 h-72 sm:w-[18.5rem] sm:h-[24.5rem] lg:w-[21.5rem] lg:h-[28.5rem] xl:w-[23.5rem] xl:h-[30.5rem]",
       )}
     >
       <img
@@ -269,16 +269,16 @@ const Card = ({ slide, index, total, progress, config, onClick }: CardProps) => 
 
       <div className="absolute inset-0 bg-gradient-to-t bg-linear-to-t from-black/85 via-black/30 to-transparent" />
 
-      <Badge className="absolute top-3 right-3 sm:top-5 sm:right-5 lg:top-6 lg:right-6 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-xs font-bold uppercase tracking-wider text-black shadow-lg">
+      <Badge className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 lg:top-6 lg:right-6 px-3 sm:px-3.5 py-0.5 sm:py-1 rounded-full bg-white/95 backdrop-blur-md text-xs sm:text-sm font-bold uppercase tracking-wider text-black shadow-lg">
         {slide.badge}
       </Badge>
 
-      <div className="absolute bottom-5 left-3 right-3 sm:bottom-8 sm:left-5 sm:right-5 lg:bottom-8 lg:left-6 lg:right-6 text-white text-center sm:text-left">
+      <div className="absolute bottom-5 left-4 right-4 sm:bottom-7 sm:left-6 sm:right-6 lg:bottom-8 lg:left-7 lg:right-7 text-white text-center sm:text-left">
         <motion.p
           style={{
             opacity: useTransform(offset, [-0.5, 0, 0.5], [0, 1, 0]),
           }}
-          className="text-base sm:text-xl lg:text-2xl font-bold leading-tight mb-1 drop-shadow-lg tracking-tight"
+          className="text-base sm:text-xl lg:text-2xl xl:text-3xl font-bold leading-tight mb-1 sm:mb-1.5 drop-shadow-lg tracking-tight"
         >
           {slide.title}
         </motion.p>
@@ -286,7 +286,7 @@ const Card = ({ slide, index, total, progress, config, onClick }: CardProps) => 
           style={{
             opacity: useTransform(offset, [-0.5, 0, 0.5], [0, 1, 0]),
           }}
-          className="hidden sm:block text-xs sm:text-sm text-white/80 line-clamp-2 italic font-medium drop-shadow"
+          className="hidden sm:block text-xs sm:text-sm lg:text-base text-white/85 line-clamp-2 italic font-medium drop-shadow"
         >
           {slide.description}
         </motion.p>

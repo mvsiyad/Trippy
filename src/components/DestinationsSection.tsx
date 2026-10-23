@@ -148,13 +148,16 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
 
         {/* 3D Stacked Carousel Component in Destination Section */}
         <div className="carousel-destinations-wrapper">
-          <div className="text-center mb-2">
+          <div className="text-center mb-3">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-accent/15 text-primary border border-accent/20">
               <i className="fa-solid fa-layer-group text-xs"></i> 3D STACKED SHOWCASE &bull; DRAGGABLE DECK
             </span>
-            <h3 className="text-lg sm:text-xl font-bold mt-2 text-foreground">
+            <h3 className="text-xl sm:text-2xl font-bold mt-2 text-foreground">
               Curated Signature Expeditions
             </h3>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1 max-w-md mx-auto">
+              Interactive 3D preview deck &mdash; swipe or drag to explore handpicked routes
+            </p>
           </div>
           
           <CarouselStacked
