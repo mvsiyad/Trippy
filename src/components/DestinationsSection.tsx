@@ -18,45 +18,6 @@ interface DestinationsSectionProps {
   onResetFilters: () => void;
 }
 
-const featuredExpeditionSlides: Slide[] = [
-  {
-    image: "/assets/images/hero.jpg",
-    title: "Spiti Valley & Kunzum",
-    description: "Cold desert gorges, 1,000-year mud monasteries & turquoise rivers at 14,000 ft.",
-    badge: "Adventure",
-  },
-  {
-    image: "/assets/images/switzerland.jpg",
-    title: "Lauterbrunnen & Alps",
-    description: "The fairytale valley of 72 waterfalls beneath towering Jungfrau massifs.",
-    badge: "Alpine",
-  },
-  {
-    image: "/assets/images/kashmir.jpg",
-    title: "Kashmir & Dal Lake",
-    description: "Carved cedar houseboats, floating shikaras, and wildflower alpine meadows.",
-    badge: "Serenity",
-  },
-  {
-    image: "/assets/images/bali.jpg",
-    title: "Bali & Nusa Penida",
-    description: "Emerald rice terraces, clifftop sea temples, and manta ray lagoons.",
-    badge: "Paradise",
-  },
-  {
-    image: "/assets/images/kyoto.jpg",
-    title: "Kyoto Temple Trails",
-    description: "10,000 vermilion Torii gates, whispering bamboo groves, and ancient tea rituals.",
-    badge: "Culture",
-  },
-  {
-    image: "/assets/images/iceland.jpg",
-    title: "Iceland South Coast",
-    description: "Aurora Borealis dancing over glacial waterfalls and black volcanic sands.",
-    badge: "Aurora",
-  },
-];
-
 export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
   destinations,
   category,
@@ -72,7 +33,7 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
   onSelectDestination,
   onResetFilters,
 }) => {
-  // Filter & sort logic
+  // Filter & sort logic applied directly to the 3D showcase
   const filteredDestinations = useMemo(() => {
     return destinations
       .filter((dest) => {
@@ -120,15 +81,27 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
       });
   }, [destinations, category, searchQuery, regionFilter, budgetFilter, vibeFilter, sortBy]);
 
+  // Transform filtered destinations into rich 3D carousel slides
+  const slides: Slide[] = useMemo(() => {
+    return filteredDestinations.map((dest) => ({
+      id: dest.id,
+      image: dest.image,
+      title: dest.name,
+      description: dest.snippet,
+      badge: dest.vibe.toUpperCase(),
+      country: dest.country,
+      region: dest.region,
+      vibe: dest.vibe,
+      dailyBudget: dest.dailyBudgetInr,
+      idealDays: dest.idealDays,
+      bestSeason: dest.bestSeason.split("(")[0].trim(),
+      isSaved: bucketList.includes(dest.id),
+    }));
+  }, [filteredDestinations, bucketList]);
+
   const handleCarouselCardClick = (slide: Slide) => {
-    // Map slide title to destination
-    const found = destinations.find(
-      (d) =>
-        d.name.toLowerCase().includes(slide.title.toLowerCase().split(" ")[0]) ||
-        slide.title.toLowerCase().includes(d.name.toLowerCase().split(" ")[0])
-    );
-    if (found) {
-      onSelectDestination(found.id);
+    if (slide.id) {
+      onSelectDestination(slide.id);
     }
   };
 
@@ -142,31 +115,11 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
           </div>
           <h2 className="section-title">Explore Iconic Travel Havens</h2>
           <p className="section-subtitle">
-            Select any destination to view in-depth location facts, seasonal windows, and transparent cost breakdowns for backpackers and luxury travelers alike.
+            Interactive 3D expedition showcase &mdash; filter by theme, swipe or drag through verified guides, and open in-depth daily budgets and seasonal roadmaps.
           </p>
         </div>
 
-        {/* 3D Stacked Carousel Component in Destination Section */}
-        <div className="carousel-destinations-wrapper">
-          <div className="text-center mb-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-accent/15 text-primary border border-accent/20">
-              <i className="fa-solid fa-layer-group text-xs"></i> 3D STACKED SHOWCASE &bull; DRAGGABLE DECK
-            </span>
-            <h3 className="text-xl sm:text-2xl font-bold mt-2 text-foreground">
-              Curated Signature Expeditions
-            </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-1 max-w-md mx-auto">
-              Interactive 3D preview deck &mdash; swipe or drag to explore handpicked routes
-            </p>
-          </div>
-          
-          <CarouselStacked
-            slides={featuredExpeditionSlides}
-            onCardClick={handleCarouselCardClick}
-          />
-        </div>
-
-        {/* Category Tabs */}
+        {/* Category Filter Tabs */}
         <div className="destination-tabs-row" id="categoryTabs">
           <button
             className={`dest-tab ${category === "all" ? "active" : ""}`}
@@ -206,10 +159,22 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
           </button>
         </div>
 
-        {/* Results Counter & Sort */}
+        {/* Results Counter & Sort Meta Bar */}
         <div className="destinations-meta-bar">
           <span id="resultsCount">
             Showing <strong>{filteredDestinations.length}</strong> verified destination guides
+            {category !== "all" && (
+              <span className="ml-1 text-xs opacity-80">
+                &bull; filtered by{" "}
+                <span className="capitalize font-semibold text-stone-900">
+                  {category === "india"
+                    ? "Incredible India"
+                    : category === "international"
+                    ? "International Wonders"
+                    : category}
+                </span>
+              </span>
+            )}
           </span>
           <div className="sort-by-wrap">
             <label htmlFor="sortDestinations">Sort by:</label>
@@ -226,7 +191,7 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
           </div>
         </div>
 
-        {/* Cards Grid or Empty State */}
+        {/* 3D Stacked Carousel as the Primary Destination Showcase */}
         {filteredDestinations.length === 0 ? (
           <div className="empty-results-box glass-panel">
             <i className="fa-solid fa-compass"></i>
@@ -242,94 +207,12 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
             </button>
           </div>
         ) : (
-          <div className="destinations-grid" id="destinationsGrid">
-            {filteredDestinations.map((dest) => {
-              const isSaved = bucketList.includes(dest.id);
-              return (
-                <article
-                  key={dest.id}
-                  className="destination-card glass-panel cursor-pointer"
-                  onClick={() => onSelectDestination(dest.id)}
-                >
-                  <div className="card-img-wrap">
-                    <img
-                      src={dest.image}
-                      alt={dest.name}
-                      className="card-img"
-                      loading="lazy"
-                    />
-                    <div className="card-top-badges">
-                      <span className="badge-country">
-                        <i className="fa-solid fa-location-dot text-accent"></i>{" "}
-                        {dest.country}
-                      </span>
-                      <button
-                        className={`btn-card-bookmark ${isSaved ? "saved" : ""}`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onToggleBookmark(dest.id);
-                        }}
-                        title={isSaved ? "Remove from Bucket List" : "Save to Bucket List"}
-                        aria-label="Save to bucket list"
-                      >
-                        <i className={`fa-${isSaved ? "solid text-danger" : "regular"} fa-heart`}></i>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="card-body">
-                    <div className="card-title-row">
-                      <h3 className="card-title">{dest.name}</h3>
-                    </div>
-                    <div className="card-tagline">{dest.tagline}</div>
-                    <p className="card-snippet">{dest.snippet}</p>
-
-                    <div className="card-metrics-strip">
-                      <div className="card-metric">
-                        <span className="cm-label">
-                          <i className="fa-regular fa-calendar-check text-accent"></i> Best Season
-                        </span>
-                        <span className="cm-val">
-                          {dest.bestSeason.split("(")[0].trim()}
-                        </span>
-                      </div>
-                      <div className="card-metric">
-                        <span className="cm-label">
-                          <i className="fa-solid fa-wallet text-accent"></i> Daily Budget
-                        </span>
-                        <span className="cm-val">{dest.dailyBudgetInr}</span>
-                      </div>
-                    </div>
-
-                    <div className="card-highlights-row">
-                      <span className="ch-tag">
-                        <i className="fa-solid fa-clock"></i> {dest.idealDays}
-                      </span>
-                      <span className="ch-tag">
-                        <i className="fa-solid fa-plane"></i>{" "}
-                        {dest.nearestAirport.split("/")[0].trim()}
-                      </span>
-                      <span className="ch-tag">
-                        <i className="fa-solid fa-mountain"></i> {dest.vibe.toUpperCase()}
-                      </span>
-                    </div>
-
-                    <div className="card-footer-action">
-                      <button
-                        className="btn btn-outline btn-block view-guide-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onSelectDestination(dest.id);
-                        }}
-                      >
-                        <span>View Full Traveler Guide</span>
-                        <i className="fa-solid fa-arrow-right"></i>
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
+          <div className="carousel-destinations-wrapper">
+            <CarouselStacked
+              slides={slides}
+              onCardClick={handleCarouselCardClick}
+              onToggleBookmark={onToggleBookmark}
+            />
           </div>
         )}
       </div>
