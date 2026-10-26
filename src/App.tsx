@@ -12,8 +12,11 @@ import { DestinationModal } from "@/components/DestinationModal";
 import { BucketListModal } from "@/components/BucketListModal";
 import { GuideAdvisoryModal } from "@/components/GuideAdvisoryModal";
 import { Toast } from "@/components/Toast";
+import { InitialLoader } from "@/components/InitialLoader";
 
 export const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   // Global filter state
   const [searchQuery, setSearchQuery] = useState("");
   const [regionFilter, setRegionFilter] = useState("all");
@@ -98,9 +101,12 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
+      {isLoading && <InitialLoader onComplete={() => setIsLoading(false)} />}
+
       <Header
         bucketCount={bucketList.length}
         onOpenBucketList={() => setIsBucketModalOpen(true)}
+        onReplayLoader={() => setIsLoading(true)}
       />
 
       <main className="flex-1">

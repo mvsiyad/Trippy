@@ -1,4 +1,5 @@
 import React from "react";
+import { TravelCompassLogo } from "./TravelCompassLogo";
 
 interface FooterProps {
   onSelectDestination: (id: string) => void;
@@ -10,8 +11,8 @@ export const Footer: React.FC<FooterProps> = ({ onSelectDestination }) => {
       <div className="container footer-grid">
         <div className="footer-col brand-col">
           <div className="brand-logo">
-            <div className="logo-icon">
-              <i className="fa-solid fa-earth-americas"></i>
+            <div className="logo-icon flex items-center justify-center">
+              <TravelCompassLogo size={28} />
             </div>
             <div className="logo-text">
               <span className="brand-name">WANDERLUST</span>

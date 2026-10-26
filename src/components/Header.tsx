@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { TravelCompassLogo } from "./TravelCompassLogo";
 
 interface HeaderProps {
   bucketCount: number;
   onOpenBucketList: () => void;
+  onReplayLoader?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   bucketCount,
   onOpenBucketList,
+  onReplayLoader,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -31,9 +34,20 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Header */}
       <header className="site-header" id="siteHeader">
         <div className="container nav-container">
-          <a href="#" className="brand-logo" id="brandLogo">
-            <div className="logo-icon">
-              <i className="fa-solid fa-earth-americas"></i>
+          <a
+            href="#"
+            className="brand-logo"
+            id="brandLogo"
+            title="Replay brand intro"
+            onClick={(e) => {
+              if (onReplayLoader) {
+                e.preventDefault();
+                onReplayLoader();
+              }
+            }}
+          >
+            <div className="logo-icon flex items-center justify-center">
+              <TravelCompassLogo size={28} />
             </div>
             <div className="logo-text">
               <span className="brand-name">WANDERLUST</span>
