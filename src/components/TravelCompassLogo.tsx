@@ -7,7 +7,7 @@ export interface TravelCompassLogoProps {
   fillPercentage?: number;
   /** Additional CSS class */
   className?: string;
-  /** Whether to show outer glow effect */
+  /** Whether to show ambient backdrop glow */
   withGlow?: boolean;
 }
 
@@ -33,48 +33,54 @@ export const TravelCompassLogo: React.FC<TravelCompassLogoProps> = ({
       aria-label="Wanderlust Compass Logo"
     >
       <defs>
-        {/* Rich Gold Linear Gradients */}
-        <linearGradient id={`gold-primary-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFF2D6" />
-          <stop offset="35%" stopColor="#DFC07D" />
-          <stop offset="70%" stopColor="#C5A059" />
-          <stop offset="100%" stopColor="#8C6B28" />
+        {/* ==============================================
+            MILK (#FFF3E6) PALETTE DEFINITIONS (Base State)
+            ============================================== */}
+        <linearGradient id={`milk-surface-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="60%" stopColor="#FFF3E6" />
+          <stop offset="100%" stopColor="#F7E6D4" />
         </linearGradient>
 
-        <linearGradient id={`gold-light-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#FFFDF7" />
-          <stop offset="50%" stopColor="#F2DFB3" />
-          <stop offset="100%" stopColor="#DFC07D" />
+        <linearGradient id={`milk-shaded-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#F5E3D2" />
+          <stop offset="100%" stopColor="#E8D1BC" />
         </linearGradient>
 
-        <linearGradient id={`gold-dark-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#B38B3E" />
-          <stop offset="50%" stopColor="#876420" />
-          <stop offset="100%" stopColor="#5E4311" />
+        {/* Plum Hairline Contours on Milk Canvas */}
+        <linearGradient id={`plum-contour-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#381932" stopOpacity="0.45" />
+          <stop offset="100%" stopColor="#381932" stopOpacity="0.25" />
         </linearGradient>
 
-        {/* Wireframe Gold Stroke */}
-        <linearGradient id={`wireframe-stroke-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#DFC07D" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#C5A059" stopOpacity="0.2" />
+        {/* ==============================================
+            PLUM (#381932) PALETTE DEFINITIONS (Filler State)
+            ============================================== */}
+        <linearGradient id={`plum-primary-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#5E2754" />
+          <stop offset="45%" stopColor="#461E3E" />
+          <stop offset="100%" stopColor="#381932" />
         </linearGradient>
 
-        {/* Liquid Surface Meniscus Beam */}
-        <linearGradient id={`meniscus-beam-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#DFC07D" stopOpacity="0" />
-          <stop offset="20%" stopColor="#FFF6DF" stopOpacity="0.9" />
-          <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
-          <stop offset="80%" stopColor="#FFF6DF" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#DFC07D" stopOpacity="0" />
+        <linearGradient id={`plum-light-${uniqueId}`} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#6C2E61" />
+          <stop offset="50%" stopColor="#4F2247" />
+          <stop offset="100%" stopColor="#381932" />
         </linearGradient>
 
-        {/* Radial Glow Filter */}
-        <filter id={`gold-glow-${uniqueId}`} x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="3.5" result="blur" />
+        <linearGradient id={`plum-dark-${uniqueId}`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#381932" />
+          <stop offset="60%" stopColor="#281124" />
+          <stop offset="100%" stopColor="#1B0A18" />
+        </linearGradient>
+
+        {/* Soft Shadow / Glow Filter */}
+        <filter id={`plum-glow-${uniqueId}`} x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
 
-        {/* Dynamic Vertical Clip Path for 0-100% Filling */}
+        {/* Dynamic Vertical Clip Path for 0-100% Plum Filling */}
         {isDynamic && (
           <clipPath id={`fill-clip-${uniqueId}`}>
             <rect
@@ -82,117 +88,60 @@ export const TravelCompassLogo: React.FC<TravelCompassLogoProps> = ({
               y={clipY}
               width="100"
               height={clampedFill}
-              style={{ transition: "y 0.1s linear, height 0.1s linear" }}
+              style={{ transition: "y 0.08s linear, height 0.08s linear" }}
             />
           </clipPath>
         )}
       </defs>
 
-      {/* Ambient background glow if requested */}
+      {/* Ambient background aura if requested */}
       {withGlow && (
         <circle
           cx="50"
           cy="50"
-          r="42"
-          fill="url(#gold-primary-${uniqueId})"
-          opacity="0.16"
-          filter={`url(#gold-glow-${uniqueId})`}
+          r="44"
+          fill="url(#plum-primary-${uniqueId})"
+          opacity="0.12"
+          filter={`url(#plum-glow-${uniqueId})`}
         />
       )}
 
       {/* ========================================================
-          LAYER 1: WIREFRAME / OUTLINE BASE (Visible at low/zero fill)
+          LAYER 1: BASE STATE IN MILK (#FFF3E6)
+          Visible on Milk Canvas with delicate Plum hairline contours
           ======================================================== */}
-      <g stroke={`url(#wireframe-stroke-${uniqueId})`} strokeWidth="1.2" strokeLinecap="round">
+      <g stroke="rgba(56, 25, 50, 0.35)" strokeLinecap="round">
         {/* Outer Celestial Ring */}
-        <circle cx="50" cy="50" r="46" strokeWidth="1.4" opacity="0.6" />
-        {/* Dial Inner Track */}
-        <circle cx="50" cy="50" r="40" strokeWidth="0.8" strokeDasharray="1.5 3.5" opacity="0.75" />
-
-        {/* Cardinal Ticks (N, S, E, W) */}
-        <line x1="50" y1="2" x2="50" y2="7" strokeWidth="1.6" />
-        <line x1="50" y1="93" x2="50" y2="98" strokeWidth="1.6" />
-        <line x1="2" y1="50" x2="7" y2="50" strokeWidth="1.6" />
-        <line x1="93" y1="50" x2="98" y2="50" strokeWidth="1.6" />
-
-        {/* Diagonal Ordinal Ticks */}
-        <line x1="16" y1="16" x2="20" y2="20" strokeWidth="1" opacity="0.6" />
-        <line x1="84" y1="16" x2="80" y2="20" strokeWidth="1" opacity="0.6" />
-        <line x1="16" y1="84" x2="20" y2="80" strokeWidth="1" opacity="0.6" />
-        <line x1="84" y1="84" x2="80" y2="80" strokeWidth="1" opacity="0.6" />
-
-        {/* Orbit Ellipse (Latitude Ring) */}
-        <ellipse
-          cx="50"
-          cy="50"
-          rx="44"
-          ry="15"
-          transform="rotate(-22 50 50)"
-          strokeWidth="0.9"
-          strokeDasharray="2 3"
-          opacity="0.45"
-        />
-
-        {/* Star Wireframe Outlines */}
-        {/* North */}
-        <polygon points="50,10 50,50 43,43" fill="none" opacity="0.35" />
-        <polygon points="50,10 50,50 57,43" fill="none" opacity="0.35" />
-        {/* South */}
-        <polygon points="50,90 50,50 43,57" fill="none" opacity="0.35" />
-        <polygon points="50,90 50,50 57,57" fill="none" opacity="0.35" />
-        {/* East */}
-        <polygon points="90,50 50,50 57,43" fill="none" opacity="0.35" />
-        <polygon points="90,50 50,50 57,57" fill="none" opacity="0.35" />
-        {/* West */}
-        <polygon points="10,50 50,50 43,43" fill="none" opacity="0.35" />
-        <polygon points="10,50 50,50 43,57" fill="none" opacity="0.35" />
-
-        {/* Diagonal Points (NE, SE, SW, NW) */}
-        <polygon points="73,27 50,50 57,43" fill="none" opacity="0.25" />
-        <polygon points="73,73 50,50 57,57" fill="none" opacity="0.25" />
-        <polygon points="27,73 50,50 43,57" fill="none" opacity="0.25" />
-        <polygon points="27,27 50,50 43,43" fill="none" opacity="0.25" />
-
-        {/* Central Bezel & Pivot */}
-        <circle cx="50" cy="50" r="8" strokeWidth="1" opacity="0.5" />
-        <circle cx="50" cy="50" r="3.5" strokeWidth="1" opacity="0.6" />
-      </g>
-
-      {/* ========================================================
-          LAYER 2: RICH FILLED LUXURY EMBLEM
-          (Clipped dynamically when fillPercentage is provided)
-          ======================================================== */}
-      <g clipPath={isDynamic ? `url(#fill-clip-${uniqueId})` : undefined}>
-        {/* Outer Radiant Bezel Ring */}
         <circle
           cx="50"
           cy="50"
           r="46"
-          stroke={`url(#gold-primary-${uniqueId})`}
-          strokeWidth="2.2"
+          strokeWidth="1.8"
+          stroke="rgba(56, 25, 50, 0.4)"
         />
 
-        {/* Outer Dial Track */}
+        {/* Dial Inner Track */}
         <circle
           cx="50"
           cy="50"
           r="40"
-          stroke={`url(#gold-light-${uniqueId})`}
-          strokeWidth="1.2"
+          strokeWidth="1"
           strokeDasharray="2 3.5"
-          opacity="0.9"
+          stroke="rgba(56, 25, 50, 0.28)"
         />
 
-        {/* Cardinal Direction Ticks */}
-        <line x1="50" y1="1" x2="50" y2="8" stroke={`url(#gold-light-${uniqueId})`} strokeWidth="2.5" strokeLinecap="round" />
-        <line x1="50" y1="92" x2="50" y2="99" stroke={`url(#gold-primary-${uniqueId})`} strokeWidth="2.5" strokeLinecap="round" />
-        <line x1="1" y1="50" x2="8" y2="50" stroke={`url(#gold-primary-${uniqueId})`} strokeWidth="2.5" strokeLinecap="round" />
-        <line x1="92" y1="50" x2="99" y2="50" stroke={`url(#gold-light-${uniqueId})`} strokeWidth="2.5" strokeLinecap="round" />
+        {/* Cardinal Direction Ticks (N, S, E, W) */}
+        <line x1="50" y1="1" x2="50" y2="8" strokeWidth="2.2" stroke="rgba(56, 25, 50, 0.5)" />
+        <line x1="50" y1="92" x2="50" y2="99" strokeWidth="2.2" stroke="rgba(56, 25, 50, 0.5)" />
+        <line x1="1" y1="50" x2="8" y2="50" strokeWidth="2.2" stroke="rgba(56, 25, 50, 0.5)" />
+        <line x1="92" y1="50" x2="99" y2="50" strokeWidth="2.2" stroke="rgba(56, 25, 50, 0.5)" />
 
-        {/* North Fleur / Expedition Arrow Tip */}
+        {/* North Arrow Tip */}
         <polygon
           points="50,4 47.5,9.5 52.5,9.5"
-          fill={`url(#gold-light-${uniqueId})`}
+          fill="#381932"
+          opacity="0.5"
+          stroke="none"
         />
 
         {/* Celestial Orbit Ring */}
@@ -202,173 +151,161 @@ export const TravelCompassLogo: React.FC<TravelCompassLogoProps> = ({
           rx="44"
           ry="15"
           transform="rotate(-22 50 50)"
-          stroke={`url(#gold-light-${uniqueId})`}
-          strokeWidth="1.4"
+          strokeWidth="1"
           strokeDasharray="3 4"
-          opacity="0.75"
+          stroke="rgba(56, 25, 50, 0.22)"
         />
 
         {/* ----------------------------------------------------
-            FACETED COMPASS STAR (Light & Dark alternating facets)
+            FACETED COMPASS STAR IN MILK (#FFF3E6)
             ---------------------------------------------------- */}
         {/* NORTH NEEDLE */}
-        {/* Left facet (Light gold highlight) */}
-        <polygon
-          points="50,8 50,50 43,43"
-          fill={`url(#gold-light-${uniqueId})`}
-        />
-        {/* Right facet (Deep burnished gold) */}
-        <polygon
-          points="50,8 50,50 57,43"
-          fill={`url(#gold-dark-${uniqueId})`}
-        />
+        <polygon points="50,8 50,50 43,43" fill={`url(#milk-surface-${uniqueId})`} strokeWidth="0.8" />
+        <polygon points="50,8 50,50 57,43" fill={`url(#milk-shaded-${uniqueId})`} strokeWidth="0.8" />
 
         {/* SOUTH NEEDLE */}
-        {/* Left facet */}
-        <polygon
-          points="50,92 50,50 43,57"
-          fill={`url(#gold-dark-${uniqueId})`}
-        />
-        {/* Right facet */}
-        <polygon
-          points="50,92 50,50 57,57"
-          fill={`url(#gold-light-${uniqueId})`}
-        />
+        <polygon points="50,92 50,50 43,57" fill={`url(#milk-shaded-${uniqueId})`} strokeWidth="0.8" />
+        <polygon points="50,92 50,50 57,57" fill={`url(#milk-surface-${uniqueId})`} strokeWidth="0.8" />
 
         {/* EAST NEEDLE */}
-        {/* Top facet */}
-        <polygon
-          points="92,50 50,50 57,43"
-          fill={`url(#gold-light-${uniqueId})`}
-        />
-        {/* Bottom facet */}
-        <polygon
-          points="92,50 50,50 57,57"
-          fill={`url(#gold-dark-${uniqueId})`}
-        />
+        <polygon points="92,50 50,50 57,43" fill={`url(#milk-surface-${uniqueId})`} strokeWidth="0.8" />
+        <polygon points="92,50 50,50 57,57" fill={`url(#milk-shaded-${uniqueId})`} strokeWidth="0.8" />
 
         {/* WEST NEEDLE */}
-        {/* Top facet */}
-        <polygon
-          points="8,50 50,50 43,43"
-          fill={`url(#gold-dark-${uniqueId})`}
-        />
-        {/* Bottom facet */}
-        <polygon
-          points="8,50 50,50 43,57"
-          fill={`url(#gold-light-${uniqueId})`}
-        />
+        <polygon points="8,50 50,50 43,43" fill={`url(#milk-shaded-${uniqueId})`} strokeWidth="0.8" />
+        <polygon points="8,50 50,50 43,57" fill={`url(#milk-surface-${uniqueId})`} strokeWidth="0.8" />
 
         {/* SECONDARY DIAGONAL POINTS */}
-        {/* NE Point */}
-        <polygon
-          points="74,26 50,50 57,43"
-          fill={`url(#gold-light-${uniqueId})`}
-          opacity="0.9"
-        />
-        <polygon
-          points="74,26 50,50 54,49"
-          fill={`url(#gold-dark-${uniqueId})`}
-          opacity="0.9"
+        <polygon points="74,26 50,50 57,43" fill={`url(#milk-surface-${uniqueId})`} strokeWidth="0.7" />
+        <polygon points="74,26 50,50 54,49" fill={`url(#milk-shaded-${uniqueId})`} strokeWidth="0.7" />
+
+        <polygon points="74,74 50,50 57,57" fill={`url(#milk-shaded-${uniqueId})`} strokeWidth="0.7" />
+        <polygon points="74,74 50,50 54,51" fill={`url(#milk-surface-${uniqueId})`} strokeWidth="0.7" />
+
+        <polygon points="26,74 50,50 43,57" fill={`url(#milk-surface-${uniqueId})`} strokeWidth="0.7" />
+        <polygon points="26,74 50,50 46,51" fill={`url(#milk-shaded-${uniqueId})`} strokeWidth="0.7" />
+
+        <polygon points="26,26 50,50 43,43" fill={`url(#milk-shaded-${uniqueId})`} strokeWidth="0.7" />
+        <polygon points="26,26 50,50 46,49" fill={`url(#milk-surface-${uniqueId})`} strokeWidth="0.7" />
+
+        {/* Center Peak Silhouette */}
+        <polygon points="50,38 56,54 44,54" fill="#381932" opacity="0.25" stroke="none" />
+
+        {/* Center Pivot */}
+        <circle cx="50" cy="50" r="9.5" stroke="rgba(56, 25, 50, 0.45)" strokeWidth="1.2" fill="#FFF3E6" />
+        <circle cx="50" cy="50" r="6" fill="#381932" opacity="0.3" stroke="none" />
+        <circle cx="50" cy="50" r="2.8" fill="#FFF3E6" stroke="none" />
+      </g>
+
+      {/* ========================================================
+          LAYER 2: SOLID PLUM (#381932) DIRECT FILL
+          Directly fills over the Milk base from bottom to top!
+          NO lines, NO meniscus bar — direct solid cover.
+          ======================================================== */}
+      <g clipPath={isDynamic ? `url(#fill-clip-${uniqueId})` : undefined}>
+        {/* Outer Bezel Ring in Plum */}
+        <circle
+          cx="50"
+          cy="50"
+          r="46"
+          stroke={`url(#plum-light-${uniqueId})`}
+          strokeWidth="2.2"
         />
 
-        {/* SE Point */}
-        <polygon
-          points="74,74 50,50 57,57"
-          fill={`url(#gold-dark-${uniqueId})`}
-          opacity="0.9"
-        />
-        <polygon
-          points="74,74 50,50 54,51"
-          fill={`url(#gold-light-${uniqueId})`}
-          opacity="0.9"
-        />
-
-        {/* SW Point */}
-        <polygon
-          points="26,74 50,50 43,57"
-          fill={`url(#gold-light-${uniqueId})`}
-          opacity="0.9"
-        />
-        <polygon
-          points="26,74 50,50 46,51"
-          fill={`url(#gold-dark-${uniqueId})`}
-          opacity="0.9"
+        {/* Outer Dial Track */}
+        <circle
+          cx="50"
+          cy="50"
+          r="40"
+          stroke={`url(#plum-primary-${uniqueId})`}
+          strokeWidth="1.2"
+          strokeDasharray="2 3.5"
+          opacity="0.95"
         />
 
-        {/* NW Point */}
+        {/* Cardinal Direction Ticks */}
+        <line x1="50" y1="1" x2="50" y2="8" stroke={`url(#plum-light-${uniqueId})`} strokeWidth="2.5" strokeLinecap="round" />
+        <line x1="50" y1="92" x2="50" y2="99" stroke={`url(#plum-primary-${uniqueId})`} strokeWidth="2.5" strokeLinecap="round" />
+        <line x1="1" y1="50" x2="8" y2="50" stroke={`url(#plum-primary-${uniqueId})`} strokeWidth="2.5" strokeLinecap="round" />
+        <line x1="92" y1="50" x2="99" y2="50" stroke={`url(#plum-light-${uniqueId})`} strokeWidth="2.5" strokeLinecap="round" />
+
+        {/* North Fleur Tip */}
         <polygon
-          points="26,26 50,50 43,43"
-          fill={`url(#gold-dark-${uniqueId})`}
-          opacity="0.9"
-        />
-        <polygon
-          points="26,26 50,50 46,49"
-          fill={`url(#gold-light-${uniqueId})`}
-          opacity="0.9"
+          points="50,4 47.5,9.5 52.5,9.5"
+          fill={`url(#plum-light-${uniqueId})`}
         />
 
-        {/* Mountain Silhouette Peak Accent at Center Core */}
-        <polygon
-          points="50,38 60,54 40,54"
-          fill="#151311"
-          opacity="0.5"
+        {/* Celestial Orbit Ring */}
+        <ellipse
+          cx="50"
+          cy="50"
+          rx="44"
+          ry="15"
+          transform="rotate(-22 50 50)"
+          stroke={`url(#plum-light-${uniqueId})`}
+          strokeWidth="1.4"
+          strokeDasharray="3 4"
+          opacity="0.85"
         />
-        <polygon
-          points="50,38 56,54 44,54"
-          fill={`url(#gold-primary-${uniqueId})`}
-          opacity="0.8"
-        />
+
+        {/* ----------------------------------------------------
+            FACETED COMPASS STAR IN PLUM (#381932)
+            ---------------------------------------------------- */}
+        {/* NORTH NEEDLE */}
+        <polygon points="50,8 50,50 43,43" fill={`url(#plum-light-${uniqueId})`} />
+        <polygon points="50,8 50,50 57,43" fill={`url(#plum-dark-${uniqueId})`} />
+
+        {/* SOUTH NEEDLE */}
+        <polygon points="50,92 50,50 43,57" fill={`url(#plum-dark-${uniqueId})`} />
+        <polygon points="50,92 50,50 57,57" fill={`url(#plum-light-${uniqueId})`} />
+
+        {/* EAST NEEDLE */}
+        <polygon points="92,50 50,50 57,43" fill={`url(#plum-light-${uniqueId})`} />
+        <polygon points="92,50 50,50 57,57" fill={`url(#plum-dark-${uniqueId})`} />
+
+        {/* WEST NEEDLE */}
+        <polygon points="8,50 50,50 43,43" fill={`url(#plum-dark-${uniqueId})`} />
+        <polygon points="8,50 50,50 43,57" fill={`url(#plum-light-${uniqueId})`} />
+
+        {/* SECONDARY DIAGONAL POINTS */}
+        <polygon points="74,26 50,50 57,43" fill={`url(#plum-light-${uniqueId})`} opacity="0.95" />
+        <polygon points="74,26 50,50 54,49" fill={`url(#plum-dark-${uniqueId})`} opacity="0.95" />
+
+        <polygon points="74,74 50,50 57,57" fill={`url(#plum-dark-${uniqueId})`} opacity="0.95" />
+        <polygon points="74,74 50,50 54,51" fill={`url(#plum-light-${uniqueId})`} opacity="0.95" />
+
+        <polygon points="26,74 50,50 43,57" fill={`url(#plum-light-${uniqueId})`} opacity="0.95" />
+        <polygon points="26,74 50,50 46,51" fill={`url(#plum-dark-${uniqueId})`} opacity="0.95" />
+
+        <polygon points="26,26 50,50 43,43" fill={`url(#plum-dark-${uniqueId})`} opacity="0.95" />
+        <polygon points="26,26 50,50 46,49" fill={`url(#plum-light-${uniqueId})`} opacity="0.95" />
+
+        {/* Center Peak Silhouette */}
+        <polygon points="50,38 60,54 40,54" fill="#240D20" opacity="0.6" />
+        <polygon points="50,38 56,54 44,54" fill={`url(#plum-primary-${uniqueId})`} opacity="0.95" />
 
         {/* Center Bezel Rings & Brass Pivot */}
         <circle
           cx="50"
           cy="50"
           r="9.5"
-          stroke={`url(#gold-dark-${uniqueId})`}
+          stroke={`url(#plum-dark-${uniqueId})`}
           strokeWidth="1.5"
-          fill="#151311"
+          fill="#381932"
         />
         <circle
           cx="50"
           cy="50"
           r="7"
-          fill={`url(#gold-primary-${uniqueId})`}
+          fill={`url(#plum-light-${uniqueId})`}
         />
         <circle
           cx="50"
           cy="50"
           r="3"
-          fill="#FFFDF7"
+          fill="#FFF3E6"
         />
       </g>
-
-      {/* ========================================================
-          LIQUID MENISCUS GLOW BEAM (Visible during filling 1-99%)
-          ======================================================== */}
-      {isDynamic && clampedFill > 1 && clampedFill < 99.5 && (
-        <g style={{ transition: "transform 0.1s linear" }}>
-          {/* Glowing horizontal meniscus waterline */}
-          <line
-            x1="12"
-            y1={clipY}
-            x2="88"
-            y2={clipY}
-            stroke={`url(#meniscus-beam-${uniqueId})`}
-            strokeWidth="3"
-            filter={`url(#gold-glow-${uniqueId})`}
-          />
-          <line
-            x1="18"
-            y1={clipY}
-            x2="82"
-            y2={clipY}
-            stroke="#FFFFFF"
-            strokeWidth="1.2"
-            opacity="0.9"
-          />
-        </g>
-      )}
     </svg>
   );
 };
