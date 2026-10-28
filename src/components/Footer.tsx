@@ -12,7 +12,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectDestination }) => {
         <div className="footer-col brand-col">
           <div className="brand-logo">
             <div className="logo-icon flex items-center justify-center">
-              <TravelCompassLogo size={28} />
+              <TravelCompassLogo size={28} variant="milk" />
             </div>
             <div className="logo-text">
               <span className="brand-name">WANDERLUST</span>

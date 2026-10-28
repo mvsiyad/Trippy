@@ -305,14 +305,14 @@ const CarouselStacked = ({
       </div>
 
       {/* Footer Info & Active Counter with generous top separation */}
-      <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-4xl mt-8 sm:mt-10 lg:mt-12 px-4 gap-2 text-xs sm:text-sm text-stone-600">
+      <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-4xl mt-8 sm:mt-10 lg:mt-12 px-4 gap-2 text-xs sm:text-sm text-[#381932]">
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white border border-stone-200/90 font-semibold text-stone-800 shadow-xs">
-            <i className="fa-solid fa-compass text-amber-600"></i>
+          <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/90 border border-[#381932]/15 font-semibold text-[#381932] shadow-xs">
+            <i className="fa-solid fa-compass text-[#381932]"></i>
             Guide {activeIndex + 1} of {total}
           </span>
-          <span className="hidden sm:inline text-stone-400">&bull;</span>
-          <span className="hidden sm:inline font-medium text-stone-700 truncate max-w-xs">
+          <span className="hidden sm:inline text-[#381932]/30">&bull;</span>
+          <span className="hidden sm:inline font-medium text-[#381932]/80 truncate max-w-xs">
             {slides[activeIndex]?.title}
           </span>
         </div>
@@ -337,10 +337,11 @@ const CarouselStacked = ({
                   damping: 28,
                 });
               }}
-              className={`h-1.5 transition-all duration-300 rounded-full cursor-pointer ${i === activeIndex
-                  ? "w-7 bg-stone-900"
-                  : "w-1.5 bg-stone-300 hover:bg-stone-400"
-                }`}
+              className={`h-1.5 transition-all duration-300 rounded-full cursor-pointer ${
+                i === activeIndex
+                  ? "w-7 bg-[#381932]"
+                  : "w-1.5 bg-[#381932]/25 hover:bg-[#381932]/50"
+              }`}
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}
@@ -522,7 +523,7 @@ const Card = ({
               e.stopPropagation();
               onClick?.();
             }}
-            className="w-full py-2 sm:py-2.5 px-3.5 rounded-xl bg-white hover:bg-stone-100 text-stone-950 font-bold text-xs sm:text-sm tracking-wide shadow-2xl flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02] active:scale-98 cursor-pointer pointer-events-auto"
+            className="w-full py-2 sm:py-2.5 px-3.5 rounded-xl bg-[#FFF3E6] hover:bg-white text-[#381932] font-bold text-xs sm:text-sm tracking-wide shadow-2xl flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02] active:scale-98 cursor-pointer pointer-events-auto border border-[#381932]/15"
           >
             <span>Explore Traveler Guide</span>
             <i className="fa-solid fa-arrow-right text-xs"></i>

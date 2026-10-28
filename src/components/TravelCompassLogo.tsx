@@ -3,8 +3,10 @@ import React, { useId } from "react";
 export interface TravelCompassLogoProps {
   /** Size in pixels (width & height), defaults to 40 */
   size?: number | string;
-  /** Fill percentage from 0 to 100 for dynamic loading. If undefined, rendered fully solid. */
+  /** Fill percentage from 0 to 100 for dynamic loading. If undefined, rendered according to variant. */
   fillPercentage?: number;
+  /** Color variant: 'milk' (for dark backgrounds), 'plum' (for light backgrounds), or default dynamic fill */
+  variant?: "milk" | "plum" | "dynamic";
   /** Additional CSS class */
   className?: string;
   /** Whether to show ambient backdrop glow */
@@ -14,12 +16,16 @@ export interface TravelCompassLogoProps {
 export const TravelCompassLogo: React.FC<TravelCompassLogoProps> = ({
   size = 40,
   fillPercentage,
+  variant,
   className = "",
   withGlow = false,
 }) => {
   const uniqueId = useId().replace(/:/g, "_");
   const isDynamic = typeof fillPercentage === "number";
-  const clampedFill = isDynamic ? Math.min(100, Math.max(0, fillPercentage)) : 100;
+  // If variant is explicitly 'milk', clampedFill is 0 (shows pure milk layer)
+  // If variant is 'plum', clampedFill is 100 (shows pure plum layer)
+  const defaultFill = variant === "milk" ? 0 : 100;
+  const clampedFill = isDynamic ? Math.min(100, Math.max(0, fillPercentage)) : defaultFill;
   const clipY = 100 - clampedFill;
 
   return (

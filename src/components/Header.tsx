@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
             }}
           >
             <div className="logo-icon flex items-center justify-center">
-              <TravelCompassLogo size={28} />
+              <TravelCompassLogo size={28} variant="milk" />
             </div>
             <div className="logo-text">
               <span className="brand-name">WANDERLUST</span>
