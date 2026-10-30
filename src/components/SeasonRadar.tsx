@@ -34,10 +34,13 @@ export const SeasonRadar: React.FC<SeasonRadarProps> = ({
     <section className="section-spacing season-radar-section" id="season-radar">
       <div className="container">
         <div className="section-header text-center">
-          <div className="section-tag">
-            <i className="fa-solid fa-calendar-check"></i> SEASONAL TIMING
+          <div className="archival-badge mx-auto">
+            <i className="fa-solid fa-calendar-check"></i>
+            <span>TEMPORAL CLIMATE INDEX &bull; ANNUAL HORIZON</span>
           </div>
-          <h2 className="section-title">Best Time to Visit: Month-by-Month</h2>
+          <h2 className="section-title">
+            Best Time to Visit: <span className="font-serif italic font-normal text-gradient">Month-by-Month</span>
+          </h2>
           <p className="section-subtitle">
             Every destination has a golden window. Pick your travel month below to see which destinations are at their peak weather.
           </p>

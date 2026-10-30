@@ -5,10 +5,13 @@ export const TravelHacks: React.FC = () => {
     <section className="section-spacing travel-hacks-section" id="travel-hacks">
       <div className="container">
         <div className="section-header text-center">
-          <div className="section-tag">
-            <i className="fa-solid fa-lightbulb"></i> INSIDER WISDOM
+          <div className="archival-badge mx-auto">
+            <i className="fa-solid fa-lightbulb"></i>
+            <span>EXPEDITION PROTOCOLS &bull; FIELD VETTED</span>
           </div>
-          <h2 className="section-title">Essential Smart Traveler Hacks</h2>
+          <h2 className="section-title">
+            Essential <span className="font-serif italic font-normal text-gradient">Smart Traveler</span> Hacks
+          </h2>
           <p className="section-subtitle">
             Whether you are heading into high-altitude Indian mountain deserts or boarding international flights, these tried-and-tested principles will save you money and headaches.
           </p>

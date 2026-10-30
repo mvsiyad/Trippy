@@ -110,10 +110,13 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
       <div className="container">
         {/* Section Header */}
         <div className="section-header text-center">
-          <div className="section-tag">
-            <i className="fa-solid fa-compass"></i> FEATURED DESTINATIONS
+          <div className="archival-badge mx-auto">
+            <i className="fa-solid fa-compass"></i>
+            <span>32° 14′ N &bull; 78° 03′ E &bull; CURATED FIELD DOSSIER</span>
           </div>
-          <h2 className="section-title">Explore Iconic Travel Havens</h2>
+          <h2 className="section-title">
+            Explore <span className="font-serif italic font-normal text-gradient">Iconic</span> Travel Havens
+          </h2>
           <p className="section-subtitle">
             Interactive 3D expedition showcase &mdash; filter by theme, swipe or drag through verified guides, and open in-depth daily budgets and seasonal roadmaps.
           </p>

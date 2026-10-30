@@ -82,10 +82,13 @@ export const BudgetCalculator: React.FC<BudgetCalculatorProps> = ({
     <section className="section-spacing budget-calc-section" id="budget-calculator">
       <div className="container">
         <div className="section-header text-center">
-          <div className="section-tag">
-            <i className="fa-solid fa-calculator"></i> TRIP EXPENSES
+          <div className="archival-badge mx-auto">
+            <i className="fa-solid fa-calculator"></i>
+            <span>FINANCIAL INTELLIGENCE &bull; 2026 RATES</span>
           </div>
-          <h2 className="section-title">Interactive Travel Cost Estimator</h2>
+          <h2 className="section-title">
+            Interactive <span className="font-serif italic font-normal text-gradient">Travel Cost</span> Estimator
+          </h2>
           <p className="section-subtitle">
             Choose your target destination, how many days you want to explore, and your travel comfort level to get an instant breakdown of transport, stays, food, and activities.
           </p>

@@ -36,6 +36,11 @@ export const Hero: React.FC<HeroProps> = ({
       </div>
 
       <div className="container hero-content-wrapper text-center hero-portal-layout">
+        <div className="archival-badge on-dark mx-auto">
+          <i className="fa-regular fa-compass"></i>
+          <span>EXPEDITION COMPASS &bull; 2026 FIELD ARCHIVE &bull; VOL. XXIV</span>
+        </div>
+
         <div className="hero-meta-badges justify-center">
           <span className="meta-pill pill-neutral">
             <i className="fa-solid fa-globe"></i> India & Worldwide Guide
@@ -49,7 +54,7 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
 
         <h1 className="hero-headline">
-          Where Will Your Wanderlust Take You? <br />
+          Where Will Your <span className="font-serif italic font-normal text-[#FFF3E6]">Wanderlust</span> Take You? <br />
           <span className="text-gradient">Explore India & The World</span>
         </h1>
 

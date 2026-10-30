@@ -425,7 +425,7 @@ const Card = ({
         "absolute rounded-2xl sm:rounded-3xl overflow-hidden bg-stone-900 group shadow-2xl transition-shadow",
         // Reduced size by ~4% for a sleeker profile and zero edge-cutting
         "w-56 h-[22.5rem] sm:w-[18rem] sm:h-[25.5rem] lg:w-[20.5rem] lg:h-[28.5rem] xl:w-[21.5rem] xl:h-[29.5rem]",
-        "border border-white/20 cursor-pointer pointer-events-none"
+        "border border-white/25 ring-1 ring-black/30 shadow-[0_25px_60px_-15px_rgba(56,25,50,0.45)] cursor-pointer pointer-events-none"
       )}
     >
       {/* Background Image */}
@@ -433,7 +433,7 @@ const Card = ({
         src={slide.image}
         alt={slide.title}
         loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-108 pointer-events-none"
       />
 
       {/* Deep gradient overlay for vibrant text legibility */}
@@ -441,8 +441,8 @@ const Card = ({
 
       {/* Top Bar: Country Badge & Bookmark / Vibe */}
       <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 flex items-center justify-between z-40">
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md text-white border border-white/25 shadow-md">
-          <i className="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md text-[#FFF3E6] border border-white/25 shadow-md">
+          <i className="fa-solid fa-location-dot text-[#FFF3E6] text-[10px]"></i>
           {slide.country || "Explore"}
         </span>
 
@@ -495,22 +495,22 @@ const Card = ({
           {/* Quick Metrics Strip */}
           <div className="flex flex-wrap items-center gap-1.5 mb-2.5">
             {slide.dailyBudget && (
-              <span className="px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-amber-300 font-semibold text-[10px] sm:text-[11px] border border-white/15 flex items-center gap-1 shadow-xs">
-                <i className="fa-solid fa-wallet text-amber-400 text-[10px]"></i>
+              <span className="px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-[#FFF3E6] font-semibold text-[10px] sm:text-[11px] border border-white/15 flex items-center gap-1 shadow-xs">
+                <i className="fa-solid fa-wallet text-[#F7E5D4] text-[10px]"></i>
                 {slide.dailyBudget}
               </span>
             )}
 
             {slide.idealDays && (
-              <span className="px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-stone-200 font-medium text-[10px] sm:text-[11px] border border-white/15 flex items-center gap-1 shadow-xs">
-                <i className="fa-solid fa-clock text-amber-400 text-[10px]"></i>
+              <span className="px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-[#FFF3E6] font-medium text-[10px] sm:text-[11px] border border-white/15 flex items-center gap-1 shadow-xs">
+                <i className="fa-solid fa-clock text-[#F7E5D4] text-[10px]"></i>
                 {slide.idealDays}
               </span>
             )}
 
             {slide.bestSeason && (
-              <span className="hidden sm:inline-flex px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-emerald-300 font-medium text-[10px] sm:text-[11px] border border-white/15 items-center gap-1 shadow-xs">
-                <i className="fa-regular fa-calendar-check text-emerald-400 text-[10px]"></i>
+              <span className="hidden sm:inline-flex px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-[#FFF3E6] font-medium text-[10px] sm:text-[11px] border border-white/15 items-center gap-1 shadow-xs">
+                <i className="fa-regular fa-calendar-check text-[#F7E5D4] text-[10px]"></i>
                 {slide.bestSeason}
               </span>
             )}

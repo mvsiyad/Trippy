@@ -13,12 +13,15 @@ export const ExpertGuides: React.FC<ExpertGuidesProps> = ({
     <section className="section-space expert-guide-section" id="expert-guides">
       <div className="container">
         <div className="section-header text-center">
-          <span className="section-tag">
-            <i className="fa-solid fa-mountain-sun"></i> Field Intelligence & Route Authenticity
-          </span>
-          <h2 className="section-headline">Curated by Himalayan & Global Field Guides</h2>
+          <div className="archival-badge mx-auto">
+            <i className="fa-solid fa-mountain-sun"></i>
+            <span>ROUTE AUTHENTICITY &bull; ACCREDITED EXPLORERS</span>
+          </div>
+          <h2 className="section-headline">
+            Curated by <span className="font-serif italic font-normal text-gradient">Himalayan & Global</span> Field Guides
+          </h2>
           <p className="section-subheadline max-w-700">
-            Trippy routes aren't scraped by bots. They are tested by veteran high-altitude mountaineers, local cultural stewards, and independent travelers who know every hairpin pass and family homestay.
+            Wanderlust routes aren't scraped by bots. They are tested by veteran high-altitude mountaineers, local cultural stewards, and independent travelers who know every hairpin pass and family homestay.
           </p>
         </div>
 

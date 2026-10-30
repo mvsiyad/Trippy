@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TravelCompassLogo } from "./TravelCompassLogo";
 
 interface HeaderProps {
@@ -13,6 +13,20 @@ export const Header: React.FC<HeaderProps> = ({
   onReplayLoader,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const progress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
+        setScrollProgress(progress);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -32,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Header */}
-      <header className="site-header" id="siteHeader">
+      <header className="site-header relative" id="siteHeader">
         <div className="container nav-container">
           <a
             href="#"
@@ -89,6 +103,12 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
         </div>
+
+        {/* Reading / Expedition Progress Hairline */}
+        <div
+          className="absolute bottom-0 left-0 h-[2px] bg-[#381932] transition-all duration-150 ease-out z-50 pointer-events-none"
+          style={{ width: `${scrollProgress}%`, boxShadow: "0 0 8px rgba(56, 25, 50, 0.4)" }}
+        />
 
         {/* Mobile Drawer */}
         <div className={`mobile-drawer ${mobileMenuOpen ? "open" : ""}`} id="mobileDrawer">
