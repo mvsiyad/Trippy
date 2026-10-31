@@ -13,7 +13,7 @@ export const ExpertGuides: React.FC<ExpertGuidesProps> = ({
     <section className="section-space expert-guide-section" id="expert-guides">
       <div className="container">
         <div className="section-header text-center">
-          <div className="archival-badge mx-auto">
+          <div className="archival-badge on-dark mx-auto">
             <i className="fa-solid fa-mountain-sun"></i>
             <span>ROUTE AUTHENTICITY &bull; ACCREDITED EXPLORERS</span>
           </div>

@@ -15,7 +15,9 @@ import { Toast } from "@/components/Toast";
 import { InitialLoader } from "@/components/InitialLoader";
 
 export const App: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(
+    () => new URLSearchParams(window.location.search).get("skip_loader") !== "true"
+  );
 
   // Global filter state
   const [searchQuery, setSearchQuery] = useState("");

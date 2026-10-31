@@ -8,18 +8,18 @@ interface SeasonRadarProps {
 }
 
 const MONTH_NAMES = [
-  { num: 1, label: "Jan", icon: "❄️" },
-  { num: 2, label: "Feb", icon: "❄️" },
-  { num: 3, label: "Mar", icon: "🌸" },
-  { num: 4, label: "Apr", icon: "🌸" },
-  { num: 5, label: "May", icon: "☀️" },
-  { num: 6, label: "Jun", icon: "☀️" },
-  { num: 7, label: "Jul", icon: "☀️" },
-  { num: 8, label: "Aug", icon: "☀️" },
-  { num: 9, label: "Sep", icon: "🍂" },
-  { num: 10, label: "Oct", icon: "🍂" },
-  { num: 11, label: "Nov", icon: "🍁" },
-  { num: 12, label: "Dec", icon: "❄️" },
+  { num: 1, label: "Jan" },
+  { num: 2, label: "Feb" },
+  { num: 3, label: "Mar" },
+  { num: 4, label: "Apr" },
+  { num: 5, label: "May" },
+  { num: 6, label: "Jun" },
+  { num: 7, label: "Jul" },
+  { num: 8, label: "Aug" },
+  { num: 9, label: "Sep" },
+  { num: 10, label: "Oct" },
+  { num: 11, label: "Nov" },
+  { num: 12, label: "Dec" },
 ];
 
 export const SeasonRadar: React.FC<SeasonRadarProps> = ({
@@ -54,7 +54,8 @@ export const SeasonRadar: React.FC<SeasonRadarProps> = ({
               className={`month-btn ${activeMonth === m.num ? "active" : ""}`}
               onClick={() => setActiveMonth(m.num)}
             >
-              <span className="m-icon">{m.icon}</span> {m.label}
+              <span className="font-mono text-[11px] opacity-50 mr-1">{m.num < 10 ? `0${m.num}` : m.num}</span>
+              <span>{m.label}</span>
             </button>
           ))}
         </div>
