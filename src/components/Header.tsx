@@ -7,6 +7,14 @@ interface HeaderProps {
   onReplayLoader?: () => void;
 }
 
+const NAV_ITEMS = [
+  { id: "destinations", label: "Destinations", icon: "fa-compass" },
+  { id: "season-radar", label: "When to Go", icon: "fa-calendar-days" },
+  { id: "budget-calculator", label: "Budget Estimator", icon: "fa-wallet" },
+  { id: "travel-hacks", label: "Traveler Hacks", icon: "fa-lightbulb" },
+  { id: "expert-guides", label: "Field Experts", icon: "fa-user-tie" },
+];
+
 export const Header: React.FC<HeaderProps> = ({
   bucketCount,
   onOpenBucketList,
@@ -14,153 +22,290 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [announcementVisible, setAnnouncementVisible] = useState(true);
+  const [activeSection, setActiveSection] = useState<string>("destinations");
 
+  // Track scroll progress & header elevation
   useEffect(() => {
     const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 24);
+
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (totalHeight > 0) {
-        const progress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
+        const progress = Math.min(100, Math.max(0, (scrollY / totalHeight) * 100));
         setScrollProgress(progress);
       }
+
+      // Active section spy
+      const sections = NAV_ITEMS.map((item) => document.getElementById(item.id));
+      const currentScroll = scrollY + 140;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section) {
+          const top = section.offsetTop;
+          if (currentScroll >= top) {
+            setActiveSection(NAV_ITEMS[i].id);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent background scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <>
-      {/* Announcement Bar */}
-      <div className="announcement-bar" id="announcementBar">
-        <div className="container announcement-content">
-          <span className="badge-pulse">
-            <i className="fa-solid fa-compass"></i> CURATED ROUTES
-          </span>
-          <span>
-            Curated guides to <strong>12+ Iconic Indian & International Wonders</strong> &bull; Location Intel, Prime Seasons & Realistic Cost Breakdowns
-          </span>
-          <a href="#destinations" className="announcement-link">
-            Explore Destinations <i className="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
+      <div className={`site-header-wrapper ${isScrolled ? "is-scrolled" : ""}`} id="headerWrapper">
+        {/* Sleek Editorial Glass Announcement Bar */}
+        {announcementVisible && (
+          <div className="announcement-bar-glass" id="announcementBar">
+            <div className="announcement-glass-container">
+              <div className="announcement-left-badge">
+                <span className="badge-compass-pulse">
+                  <i className="fa-solid fa-compass"></i>
+                  <span>Curated Routes</span>
+                </span>
+                <span className="announcement-text">
+                  Curated field guides to <strong className="text-white font-semibold">12+ Iconic Wonders</strong> &bull; India & Worldwide Intel & Realistic Budgets
+                </span>
+              </div>
+              <div className="announcement-right-actions">
+                <a
+                  href="#destinations"
+                  className="announcement-glass-link"
+                  onClick={(e) => scrollToSection(e, "destinations")}
+                >
+                  Explore Destinations <i className="fa-solid fa-arrow-right"></i>
+                </a>
+                <button
+                  type="button"
+                  className="announcement-dismiss-btn"
+                  onClick={() => setAnnouncementVisible(false)}
+                  title="Dismiss notification"
+                  aria-label="Dismiss notification"
+                >
+                  <i className="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Floating Glassmorphism Navigation Island */}
+        <header className="site-header-glass" id="siteHeader">
+          <div className="glass-nav-island">
+            {/* Brand Logo with Glass Jewel Compass */}
+            <a
+              href="#"
+              className="brand-logo-glass group"
+              id="brandLogo"
+              title="Wanderlust — Replay brand intro"
+              onClick={(e) => {
+                if (onReplayLoader) {
+                  e.preventDefault();
+                  onReplayLoader();
+                }
+              }}
+            >
+              <div className="logo-jewel-badge">
+                <TravelCompassLogo
+                  size={22}
+                  variant="milk"
+                  className="compass-spin-effect"
+                />
+                <div className="jewel-specular-sheen" />
+              </div>
+              <div className="logo-typography">
+                <span className="brand-title">WANDERLUST</span>
+                <span className="brand-subtitle">THE TRAVELER'S COMPASS</span>
+              </div>
+            </a>
+
+            {/* Desktop Navigation Track (Glass Capsule Cluster) */}
+            <nav className="desktop-nav-glass" id="desktopNav" aria-label="Main Navigation">
+              {NAV_ITEMS.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={(e) => scrollToSection(e, item.id)}
+                    className={`nav-pill-item ${isActive ? "active" : ""}`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    <i className={`fa-solid ${item.icon} nav-pill-icon`}></i>
+                    <span>{item.label}</span>
+                    {isActive && <span className="active-glow-indicator" />}
+                  </a>
+                );
+              })}
+            </nav>
+
+            {/* Action Buttons: Glass Bucket List & Velvet CTA */}
+            <div className="nav-actions-glass">
+              {/* My Bucket List Glass Pill */}
+              <button
+                className="btn-glass-bucket group"
+                onClick={onOpenBucketList}
+                aria-label={`Open Bucket List with ${bucketCount} saved items`}
+              >
+                <div className="heart-icon-wrapper">
+                  <i className="fa-solid fa-heart heart-glyph"></i>
+                </div>
+                <span className="bucket-btn-label">Bucket List</span>
+                <span className="bucket-badge-pill" aria-hidden="true">
+                  {bucketCount}
+                </span>
+              </button>
+
+              {/* Trip Cost Estimator Primary CTA */}
+              <a
+                href="#budget-calculator"
+                onClick={(e) => scrollToSection(e, "budget-calculator")}
+                className="btn-glass-primary group"
+              >
+                <i className="fa-solid fa-calculator cta-calc-icon"></i>
+                <span>Trip Estimator</span>
+                <i className="fa-solid fa-arrow-right cta-arrow-icon"></i>
+                <div className="cta-light-sweep" />
+              </a>
+
+              {/* Mobile Drawer Trigger */}
+              <button
+                className="mobile-glass-toggle"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle navigation menu"
+                aria-expanded={mobileMenuOpen}
+              >
+                <i className={`fa-solid ${mobileMenuOpen ? "fa-xmark" : "fa-bars-staggered"}`}></i>
+              </button>
+            </div>
+
+            {/* Reading / Expedition Progress Glowing Filament */}
+            <div className="reading-filament-track" aria-hidden="true">
+              <div
+                className="reading-filament-bar"
+                style={{ width: `${scrollProgress}%` }}
+              />
+            </div>
+          </div>
+        </header>
       </div>
 
-      {/* Header */}
-      <header className="site-header relative" id="siteHeader">
-        <div className="container nav-container">
-          <a
-            href="#"
-            className="brand-logo"
-            id="brandLogo"
-            title="Replay brand intro"
-            onClick={(e) => {
-              if (onReplayLoader) {
-                e.preventDefault();
-                onReplayLoader();
-              }
-            }}
+      {/* Luxury Frosted Mobile Drawer Overlay & Panel */}
+      <div
+        className={`mobile-glass-overlay ${mobileMenuOpen ? "open" : ""}`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
+
+      <aside
+        className={`mobile-glass-drawer ${mobileMenuOpen ? "open" : ""}`}
+        id="mobileDrawer"
+        aria-label="Mobile Navigation"
+      >
+        <div className="mobile-drawer-top">
+          <div className="drawer-brand">
+            <div className="drawer-logo-badge">
+              <TravelCompassLogo size={20} variant="milk" />
+            </div>
+            <div className="drawer-brand-text">
+              <span className="drawer-title">WANDERLUST</span>
+              <span className="drawer-subtitle">FIELD COMPASS & ARCHIVE</span>
+            </div>
+          </div>
+          <button
+            className="drawer-close-btn"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close navigation menu"
           >
-            <div className="logo-icon flex items-center justify-center">
-              <TravelCompassLogo size={28} variant="milk" />
-            </div>
-            <div className="logo-text">
-              <span className="brand-name">WANDERLUST</span>
-              <span className="brand-tag">THE TRAVELER'S COMPASS</span>
-            </div>
-          </a>
+            <i className="fa-solid fa-xmark"></i>
+          </button>
+        </div>
 
-          <nav className="desktop-nav" id="desktopNav">
-            <a href="#destinations" className="nav-link active">Destinations</a>
-            <a href="#season-radar" className="nav-link">When to Go</a>
-            <a href="#budget-calculator" className="nav-link">Budget Estimator</a>
-            <a href="#travel-hacks" className="nav-link">Traveler Hacks</a>
-            <a href="#expert-guides" className="nav-link">Field Experts</a>
-          </nav>
+        <nav className="mobile-drawer-nav">
+          <span className="drawer-section-label">CURATED DIRECTORY</span>
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`mobile-glass-link ${isActive ? "active" : ""}`}
+                onClick={(e) => scrollToSection(e, item.id)}
+              >
+                <div className="link-icon-box">
+                  <i className={`fa-solid ${item.icon}`}></i>
+                </div>
+                <span className="link-text">{item.label}</span>
+                {isActive ? (
+                  <span className="link-active-pill">Viewing</span>
+                ) : (
+                  <i className="fa-solid fa-chevron-right link-arrow"></i>
+                )}
+              </a>
+            );
+          })}
+        </nav>
 
-          <div className="nav-actions">
+        <div className="mobile-drawer-bottom">
+          <div className="drawer-action-cards">
             <button
-              className="btn btn-outline btn-sm btn-bucket"
-              onClick={onOpenBucketList}
-              aria-label="Open Bucket List"
+              className="drawer-bucket-btn"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenBucketList();
+              }}
             >
-              <i className="fa-solid fa-heart text-danger"></i>
-              <span className="btn-text">My Bucket List</span>
-              <span className="bucket-counter">{bucketCount}</span>
+              <div className="flex items-center gap-2.5">
+                <i className="fa-solid fa-heart text-[#C22F6A]"></i>
+                <span className="font-semibold text-sm text-[#381932]">My Saved Bucket List</span>
+              </div>
+              <span className="drawer-bucket-counter">{bucketCount}</span>
             </button>
+
             <a
               href="#budget-calculator"
-              className="btn btn-primary btn-sm pulse-glow header-calc-btn"
+              className="drawer-calc-btn"
+              onClick={(e) => scrollToSection(e, "budget-calculator")}
             >
               <i className="fa-solid fa-calculator"></i>
-              <span>Trip Cost Estimator</span>
+              <span>Open Trip Cost Estimator</span>
             </a>
-            <button
-              className="mobile-menu-toggle"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle navigation menu"
-            >
-              <i className="fa-solid fa-bars"></i>
-            </button>
+          </div>
+
+          <div className="drawer-editorial-footer">
+            <span>2026 EDITION &bull; HAUTE TRAVEL COMPASS</span>
           </div>
         </div>
-
-        {/* Reading / Expedition Progress Hairline */}
-        <div
-          className="absolute bottom-0 left-0 h-[2px] bg-[#381932] transition-all duration-150 ease-out z-50 pointer-events-none"
-          style={{ width: `${scrollProgress}%`, boxShadow: "0 0 8px rgba(56, 25, 50, 0.4)" }}
-        />
-
-        {/* Mobile Drawer */}
-        <div className={`mobile-drawer ${mobileMenuOpen ? "open" : ""}`} id="mobileDrawer">
-          <div className="mobile-drawer-header">
-            <span className="brand-name">WANDERLUST</span>
-            <button
-              className="drawer-close"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <i className="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <div className="mobile-drawer-links">
-            <a
-              href="#destinations"
-              className="mobile-nav-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <i className="fa-solid fa-map-location-dot"></i> Explore Destinations
-            </a>
-            <a
-              href="#season-radar"
-              className="mobile-nav-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <i className="fa-solid fa-calendar-check"></i> Best Time to Visit
-            </a>
-            <a
-              href="#budget-calculator"
-              className="mobile-nav-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <i className="fa-solid fa-wallet"></i> Trip Budget Estimator
-            </a>
-            <a
-              href="#travel-hacks"
-              className="mobile-nav-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <i className="fa-solid fa-lightbulb"></i> Smart Travel Hacks
-            </a>
-            <a
-              href="#expert-guides"
-              className="mobile-nav-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <i className="fa-solid fa-person-hiking"></i> Field Experts & Guides
-            </a>
-          </div>
-        </div>
-      </header>
+      </aside>
     </>
   );
 };
