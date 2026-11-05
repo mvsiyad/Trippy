@@ -103,7 +103,7 @@ export const BudgetCalculator: React.FC<BudgetCalculatorProps> = ({
 
             <div className="calc-form-group">
               <label htmlFor="calcDestinationSelect">
-                <i className="fa-solid fa-map-pin text-accent"></i> Select Destination
+                <span><i className="fa-solid fa-map-pin text-[#9C335E] mr-1"></i> Select Destination</span>
               </label>
               <select
                 id="calcDestinationSelect"
@@ -120,8 +120,8 @@ export const BudgetCalculator: React.FC<BudgetCalculatorProps> = ({
 
             <div className="calc-form-group">
               <label>
-                <i className="fa-solid fa-clock text-accent"></i> Trip Duration (Days):{" "}
-                <strong className="text-accent" id="calcDaysVal">
+                <span><i className="fa-solid fa-clock text-[#9C335E] mr-1"></i> Trip Duration (Days)</span>
+                <strong className="text-[#9C335E] px-2.5 py-0.5 rounded-full bg-white/70 border border-white/80 shadow-xs text-xs font-bold" id="calcDaysVal">
                   {days} Days
                 </strong>
               </label>

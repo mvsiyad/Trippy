@@ -165,11 +165,12 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
         {/* Results Counter & Sort Meta Bar */}
         <div className="destinations-meta-bar">
           <span id="resultsCount">
-            Showing <strong>{filteredDestinations.length}</strong> verified destination guides
+            <i className="fa-solid fa-compass text-[#9C335E] text-xs"></i>
+            <span>Showing <strong>{filteredDestinations.length}</strong> verified destination guides</span>
             {category !== "all" && (
-              <span className="ml-1 text-xs opacity-80">
-                &bull; filtered by{" "}
-                <span className="capitalize font-semibold text-stone-900">
+              <span className="inline-flex items-center gap-1.5 ml-1.5 text-xs">
+                <span className="opacity-60">&bull;</span>
+                <span className="capitalize font-semibold text-[#381932] px-2.5 py-0.5 rounded-full bg-white/70 border border-white/80 shadow-xs">
                   {category === "india"
                     ? "Incredible India"
                     : category === "international"
