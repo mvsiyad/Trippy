@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TravelCompassLogo } from "./TravelCompassLogo";
+import { TrippyLogo } from "./TrippyLogo";
 
 interface InitialLoaderProps {
   onComplete: () => void;
@@ -72,7 +72,7 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({
       className={`fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#FFF3E6] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] select-none ${
         isFadingOut ? "opacity-0 scale-105 pointer-events-none" : "opacity-100 scale-100"
       }`}
-      aria-label="Loading Wanderlust"
+      aria-label="Loading triPPy"
       role="progressbar"
       aria-valuenow={progress}
       aria-valuemin={0}
@@ -89,17 +89,17 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({
       />
 
       <div className="relative z-10 flex flex-col items-center justify-center">
-        {/* Initial Milk (#FFF3E6) Logo directly being filled by Plum (#381932) */}
+        {/* Aesthetic triPPy Emblem being dynamically filled by Plum (#381932) */}
         <div className="relative transition-transform duration-300">
-          <TravelCompassLogo
-            size={140}
+          <TrippyLogo
+            size={130}
             fillPercentage={progress}
             withGlow={false}
             className="filter drop-shadow-[0_8px_20px_rgba(56,25,50,0.12)]"
           />
         </div>
 
-        {/* Plain Number Only Loading in Plum (#381932) */}
+        {/* Minimalist Loading Percentage & Brand Signature */}
         <div className="mt-7 flex items-baseline tracking-wider">
           <span
             className="font-mono text-2xl font-bold tabular-nums text-[#381932] transition-colors duration-200"
@@ -109,6 +109,15 @@ export const InitialLoader: React.FC<InitialLoaderProps> = ({
           </span>
           <span className="font-mono text-sm font-semibold text-[#381932]/70 ml-1">
             %
+          </span>
+        </div>
+
+        <div className="mt-3 flex items-center gap-1.5 opacity-80">
+          <span className="font-serif tracking-[0.24em] text-xs font-bold text-[#381932]">
+            TRI<span className="text-[#9C335E]">PP</span>Y
+          </span>
+          <span className="text-[10px] tracking-[0.2em] font-sans uppercase text-[#381932]/60">
+            &bull; ARCHIVE
           </span>
         </div>
       </div>

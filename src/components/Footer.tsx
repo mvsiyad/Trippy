@@ -1,5 +1,5 @@
 import React from "react";
-import { TravelCompassLogo } from "./TravelCompassLogo";
+import { TrippyLogo } from "./TrippyLogo";
 
 interface FooterProps {
   onSelectDestination: (id: string) => void;
@@ -12,15 +12,17 @@ export const Footer: React.FC<FooterProps> = ({ onSelectDestination }) => {
         <div className="footer-col brand-col">
           <div className="brand-logo">
             <div className="logo-icon flex items-center justify-center">
-              <TravelCompassLogo size={28} variant="milk" />
+              <TrippyLogo size={28} variant="milk" />
             </div>
             <div className="logo-text">
-              <span className="brand-name">WANDERLUST</span>
-              <span className="brand-tag">THE TRAVELER'S COMPASS</span>
+              <span className="brand-name">
+                tri<span className="brand-name-accent">PP</span>y
+              </span>
+              <span className="brand-tag">CURATED TRAVEL ATELIER</span>
             </div>
           </div>
           <p className="footer-tagline">
-            An independent guide to exploring the most scenic landscapes across India and planet Earth. Built for explorers, budget backpackers, and roadtrippers.
+            An independent luxury travel collective exploring the most scenic landscapes across India and planet Earth. Built for mindful explorers, roadtrippers, and modern travelers.
           </p>
         </div>
 
@@ -120,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectDestination }) => {
 
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p>&copy; 2026 Wanderlust. Curated travel guides and budget planner.</p>
+          <p>&copy; 2026 triPPy. Curated travel guides and budget planner.</p>
           <div className="footer-legal">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>

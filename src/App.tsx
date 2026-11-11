@@ -30,7 +30,7 @@ export const App: React.FC = () => {
   // Bucket list state with localStorage
   const [bucketList, setBucketList] = useState<string[]>(() => {
     try {
-      const saved = localStorage.getItem("wanderlust_bucket");
+      const saved = localStorage.getItem("trippy_bucket") || localStorage.getItem("wanderlust_bucket");
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -39,7 +39,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     try {
-      localStorage.setItem("wanderlust_bucket", JSON.stringify(bucketList));
+      localStorage.setItem("trippy_bucket", JSON.stringify(bucketList));
     } catch (e) {
       console.error(e);
     }

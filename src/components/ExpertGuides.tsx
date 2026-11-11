@@ -21,7 +21,7 @@ export const ExpertGuides: React.FC<ExpertGuidesProps> = ({
             Curated by <span className="font-serif italic font-normal text-gradient">Himalayan & Global</span> Field Guides
           </h2>
           <p className="section-subheadline max-w-700">
-            Wanderlust routes aren't scraped by bots. They are tested by veteran high-altitude mountaineers, local cultural stewards, and independent travelers who know every hairpin pass and family homestay.
+            triPPy routes aren't scraped by bots. They are tested by veteran high-altitude mountaineers, local cultural stewards, and independent travelers who know every hairpin pass and family homestay.
           </p>
         </div>
 

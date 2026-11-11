@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TravelCompassLogo } from "./TravelCompassLogo";
+import { TrippyLogo } from "./TrippyLogo";
 
 interface HeaderProps {
   bucketCount: number;
@@ -89,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="announcement-glass-container">
               <div className="announcement-left-badge">
                 <span className="badge-compass-pulse">
-                  <i className="fa-solid fa-compass"></i>
+                  <i className="fa-solid fa-sparkles"></i>
                   <span>Curated Routes</span>
                 </span>
                 <span className="announcement-text">
@@ -121,12 +121,12 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Floating Glassmorphism Navigation Island */}
         <header className="site-header-glass" id="siteHeader">
           <div className="glass-nav-island">
-            {/* Brand Logo with Glass Jewel Compass */}
+            {/* Brand Logo with Glass Jewel Emblem */}
             <a
               href="#"
               className="brand-logo-glass group"
               id="brandLogo"
-              title="Wanderlust — Replay brand intro"
+              title="triPPy — Replay brand intro"
               onClick={(e) => {
                 if (onReplayLoader) {
                   e.preventDefault();
@@ -135,16 +135,18 @@ export const Header: React.FC<HeaderProps> = ({
               }}
             >
               <div className="logo-jewel-badge">
-                <TravelCompassLogo
-                  size={22}
+                <TrippyLogo
+                  size={24}
                   variant="milk"
-                  className="compass-spin-effect"
+                  className="logo-emblem-effect"
                 />
                 <div className="jewel-specular-sheen" />
               </div>
               <div className="logo-typography">
-                <span className="brand-title">WANDERLUST</span>
-                <span className="brand-subtitle">THE TRAVELER'S COMPASS</span>
+                <span className="brand-title">
+                  tri<span className="brand-title-accent">PP</span>y
+                </span>
+                <span className="brand-subtitle">CURATED EXPEDITIONS</span>
               </div>
             </a>
 
@@ -234,11 +236,13 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="mobile-drawer-top">
           <div className="drawer-brand">
             <div className="drawer-logo-badge">
-              <TravelCompassLogo size={20} variant="milk" />
+              <TrippyLogo size={22} variant="milk" />
             </div>
             <div className="drawer-brand-text">
-              <span className="drawer-title">WANDERLUST</span>
-              <span className="drawer-subtitle">FIELD COMPASS & ARCHIVE</span>
+              <span className="drawer-title">
+                tri<span className="brand-title-accent">PP</span>y
+              </span>
+              <span className="drawer-subtitle">CURATED EXPEDITIONS</span>
             </div>
           </div>
           <button
